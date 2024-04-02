@@ -7,93 +7,157 @@ class LogInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        alignment: Alignment.center,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topCenter,
+            begin: Alignment.topRight,
             end: Alignment.bottomCenter,
             colors: [Color(0xFF7C9670), Color(0xB2AFAD8B), Color(0xFFEEE6DE)],
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.only(top: 80),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'Vaccine',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 40,
-                  fontFamily: 'Kanit',
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                'Passport',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 40,
-                  fontFamily: 'Kanit',
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 20),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'เลขประจำตัวประชาชน หรือ เบอร์มือถือ',
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+              Padding(
+                padding: const EdgeInsets.only(left: 40),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Vaccine',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 40,
+                          fontFamily: 'Kanit',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        'Passport',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 40,
+                          fontFamily: 'Kanit',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
               ),
-              SizedBox(height: 10),
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: 'รหัสผ่าน',
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+              SizedBox(height: 60),
+              Padding(
+                padding: const EdgeInsets.only(left: 40),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'เลขประจำตัวประชาชน หรือ เบอร์มือถือ',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontFamily: 'Kanit',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      SizedBox(
+                        width: 300,
+                        height: 40,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            filled: true,
+                            labelStyle: TextStyle(color: Colors.black),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                          ),
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 15),
+              Padding(
+                padding: const EdgeInsets.only(left: 40),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'รหัสผ่าน',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontFamily: 'Kanit',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      SizedBox(
+                        width: 300,
+                        height: 40,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            filled: true,
+                            labelStyle: TextStyle(color: Colors.black),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                          ),
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white, backgroundColor: Color(0xFF76A186),
+                  primary: Color(0xFF76A186),
+                  onPrimary: Colors.white,
                 ),
-                child: Text('เข้าสู่ระบบ'),
+                child: Text(
+                  'เข้าสู่ระบบ',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontFamily: 'Kanit',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'สร้างบัญชีใหม่',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
               ),
               SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  
-                },
-                child: Text(
-                  'สร้างบัญชีใหม่',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-
-                },
-                child: Text(
-                  'ลืมรหัสผ่าน?',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
             ],
           ),
         ),
