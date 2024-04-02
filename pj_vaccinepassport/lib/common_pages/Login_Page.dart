@@ -6,6 +6,7 @@ class LogInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
