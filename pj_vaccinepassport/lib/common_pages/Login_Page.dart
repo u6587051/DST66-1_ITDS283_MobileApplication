@@ -12,8 +12,14 @@ class LogInPage extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFF7C9670), Color(0xB2AFAD8B), Color(0xFFEEE6DE)],
+            end: Alignment.bottomLeft,
+            stops: [0,0.36,0.56,0.77],
+            colors: [
+              Color.fromARGB(204, 45, 71, 55),
+              Color.fromARGB(255, 124, 150, 112),
+              Color.fromARGB(179, 176, 173, 140),
+              Color.fromARGB(255, 238, 230, 222)
+            ],
           ),
         ),
         child: Padding(
