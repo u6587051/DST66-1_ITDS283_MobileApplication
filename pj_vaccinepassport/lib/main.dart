@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pj_vaccinepassport/pages/Login_Page.dart';
-
+import 'package:pj_vaccinepassport/common_pages/Login_Page.dart';
 void main() {
   runApp(const MyApp());
 }
