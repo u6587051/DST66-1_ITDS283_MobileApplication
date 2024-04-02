@@ -6,6 +6,7 @@ class LogInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
@@ -134,7 +135,8 @@ class LogInPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white, backgroundColor: Color(0xFF76A186),
+                  foregroundColor: Colors.white,
+                  backgroundColor: Color(0xFF76A186),
                 ),
                 child: Text(
                   'เข้าสู่ระบบ',
