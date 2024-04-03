@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +35,7 @@ class HomePage extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(10, 15, 0, 10),
                 child: CircleAvatar(
                   backgroundImage: NetworkImage(
-                      'https://via.placeholder.com/150'), // Your profile picture
+                      ''), // Your profile picture
                 ),
               ),
               actions: <Widget>[
@@ -69,7 +74,8 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        child: Text('Your body content here'),
+        child: Container(
+        ),
       ),
     );
   }
