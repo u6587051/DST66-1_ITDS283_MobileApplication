@@ -150,6 +150,79 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                //Antibody
+                CircleAvatar(
+                  backgroundColor: Color.fromARGB(255, 45, 71, 55),
+                  radius: 50,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.bloodtype,
+                      color: Colors.white,
+                      size: 80,
+                    ),
+                    onPressed: () {
+                      // Add your notification action here
+                    },
+                  ),
+                ),
+                // History
+                CircleAvatar(
+                  backgroundColor: Color.fromARGB(255, 45, 71, 55),
+                  radius: 50,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.folder_copy_rounded,
+                      color: Colors.white,
+                      size: 80,
+                    ),
+                    onPressed: () {
+                      // Add your notification action here
+                    },
+                  ),
+                ),
+                // Certificate
+                CircleAvatar(
+                  backgroundColor: Color.fromARGB(255, 45, 71, 55),
+                  radius: 50,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.person,
+                      color: Colors.white,
+                      size: 80,
+                    ),
+                    onPressed: () {
+                      // Add your notification action here
+                    },
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  ' Antibody',
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  'ประวัติ\nการฉีดวัคซีน',
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  'ใบรับรอง',
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+              ],
             )
           ],
         ),
