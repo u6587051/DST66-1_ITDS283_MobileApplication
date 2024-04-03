@@ -223,6 +223,77 @@ class _HomePageState extends State<HomePage> {
                   textAlign: TextAlign.center,
                 ),
               ],
+            ),
+            SizedBox(height: 10,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                //Antibody
+                CircleAvatar(
+                  backgroundColor: Color.fromARGB(255, 45, 71, 55),
+                  radius: 50,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.vaccines,
+                      color: Colors.white,
+                      size: 80,
+                    ),
+                    onPressed: () {
+                      // Add your notification action here
+                    },
+                  ),
+                ),
+                // History
+                CircleAvatar(
+                  backgroundColor: Color.fromARGB(255, 45, 71, 55),
+                  radius: 50,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.calendar_month,
+                      color: Colors.white,
+                      size: 80,
+                    ),
+                    onPressed: () {
+                      // Add your notification action here
+                    },
+                  ),
+                ),
+                // Certificate
+                CircleAvatar(
+                  backgroundColor: Color.fromARGB(255, 45, 71, 55),
+                  radius: 50,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.local_hospital,
+                      color: Colors.white,
+                      size: 80,
+                    ),
+                    onPressed: () {
+                      // Add your notification action here
+                    },
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  ' ข้อมูลวัคซีน',
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  '      ปฏิทิน',
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  '      ค้นหา\n    สถานพยาบาล',
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+              ],
             )
           ],
         ),
