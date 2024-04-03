@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key});
@@ -18,24 +19,7 @@ final List<String> imagePath = [
 
 int _activePage = 0;
 
-final PageController _pageController = PageController(initialPage: 0);
-
-// Timer? _timer;
-
-late List<Widget> _pages;
-
 class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _pages = List.generate(
-        imagePath.length,
-        (index) => ImagePlaceHolder(
-              imagePath: imagePath[index],
-            ));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,20 +104,31 @@ class _HomePageState extends State<HomePage> {
               width: 350,
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
+                  color: Colors.white,
                   borderRadius: BorderRadius.all(
-                Radius.circular(10),
-              )),
-              height: MediaQuery.of(context).size.height / 4,
-              child: PageView.builder(
-                  itemCount: imagePath.length,
-                  onPageChanged: (value) {
+                    Radius.circular(10),
+                  )),
+              child: CarouselSlider.builder(
+                itemCount: imagePath.length,
+                options: CarouselOptions(
+                  viewportFraction: 1,
+                  height: MediaQuery.of(context).size.height / 4,
+                  autoPlay: true,
+                  aspectRatio: 16 / 9,
+                  autoPlayInterval: Duration(seconds: 3),
+                  onPageChanged: (index, reason) {
                     setState(() {
-                      _activePage = value;
+                      _activePage = index;
                     });
                   },
-                  itemBuilder: (context, index) {
-                    return _pages[index];
-                  }),
+                ),
+                itemBuilder: (BuildContext context, int index, int realIndex) {
+                  return Image.asset(
+                    imagePath[index],
+                    fit: BoxFit.fill,
+                  );
+                },
+              ),
             ),
             // Page Indicator
             SizedBox(
@@ -143,34 +138,22 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List<Widget>.generate(
-                    _pages.length,
-                    (index) => Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
-                          child: CircleAvatar(
-                            radius: 4,
-                            backgroundColor: _activePage == index
-                                ? Colors.grey.shade700
-                                : Colors.grey,
-                          ),
-                        )),
+                  imagePath.length,
+                  (index) => Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: CircleAvatar(
+                      radius: 4,
+                      backgroundColor: _activePage == index
+                          ? Colors.grey.shade700
+                          : Colors.grey.shade300,
+                    ),
+                  ),
+                ),
               ),
             )
           ],
         ),
       ),
-    );
-  }
-}
-
-class ImagePlaceHolder extends StatelessWidget {
-  final String? imagePath;
-  const ImagePlaceHolder({super.key, this.imagePath});
-
-  @override
-  Widget build(BuildContext context) {
-    return Image.asset(
-      imagePath!,
-      fit: BoxFit.cover,
     );
   }
 }
