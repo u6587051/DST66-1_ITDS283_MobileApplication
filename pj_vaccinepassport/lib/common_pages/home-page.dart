@@ -16,6 +16,12 @@ final List<String> imagePath = [
   "assets/images/vaccine6.png"
 ];
 
+int _activePage = 0;
+
+final PageController _pageController = PageController(initialPage: 0);
+
+// Timer? _timer;
+
 late List<Widget> _pages;
 
 class _HomePageState extends State<HomePage> {
@@ -57,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.fromLTRB(10, 15, 0, 10),
                 child: CircleAvatar(
                   backgroundImage: NetworkImage(''),
-                   // Your profile picture
+                  // Your profile picture
                 ),
               ),
               actions: <Widget>[
@@ -99,20 +105,37 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             SizedBox(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height / 4,
+              child: PageView.builder(
+                  itemCount: imagePath.length,
+                  onPageChanged: (value) {
+                    setState(() {
+                      _activePage = value;
+                    });
+                  },
+                  itemBuilder: (context, index) {
+                    return _pages[index];
+                  }),
+            ),
+            // Page Indicator
+            SizedBox(
               height: 10,
             ),
             Container(
-              width: 350,
-              height: 300,
-              alignment: Alignment.center,
-              child: SizedBox(
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height / 4,
-                child: PageView.builder(
-                    itemCount: imagePath.length,
-                    itemBuilder: (context, index) {
-                      return _pages[index];
-                    }),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List<Widget>.generate(
+                    _pages.length,
+                    (index) => Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: CircleAvatar(
+                            radius: 4,
+                            backgroundColor: _activePage == index
+                                ? Colors.grey.shade700
+                                : Colors.grey,
+                          ),
+                        )),
               ),
             )
           ],
