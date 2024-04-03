@@ -68,6 +68,7 @@ flutter:
     - assets/images/vaccine4.png
     - assets/images/vaccine5.png
     - assets/images/vaccine6.png
+    - assets/images/man_test.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

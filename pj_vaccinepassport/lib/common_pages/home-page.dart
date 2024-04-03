@@ -61,9 +61,13 @@ class _HomePageState extends State<HomePage> {
               elevation: 0, // Remove app bar shadow
               leading: Padding(
                 padding: const EdgeInsets.fromLTRB(10, 15, 0, 10),
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage(''),
-                  // Your profile picture
+                child: FittedBox(
+                  fit: BoxFit.cover,
+                  child: CircleAvatar(
+                    radius: 30,
+                    backgroundImage: AssetImage('assets/images/man_test.jpg'),
+                    // Your profile picture
+                  ),
                 ),
               ),
               actions: <Widget>[
@@ -71,13 +75,18 @@ class _HomePageState extends State<HomePage> {
                   icon: Icon(
                     Icons.notifications,
                     color: Colors.white,
+                    size: 40,
                   ),
                   onPressed: () {
                     // Add your notification action here
                   },
                 ),
                 IconButton(
-                  icon: Icon(Icons.exit_to_app, color: Colors.white),
+                  icon: Icon(
+                    Icons.exit_to_app,
+                    color: Colors.white,
+                    size: 40,
+                  ),
                   onPressed: () {
                     // Add your exit action here
                   },
@@ -105,7 +114,15 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             SizedBox(
-              width: double.infinity,
+              height: 10,
+            ),
+            Container(
+              width: 350,
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              )),
               height: MediaQuery.of(context).size.height / 4,
               child: PageView.builder(
                   itemCount: imagePath.length,
