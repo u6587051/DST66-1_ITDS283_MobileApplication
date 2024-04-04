@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            stops: [0, 0.45, 0.75, 0.88],
+            stops: [0, 0.45, 0.75, 0.98],
             colors: [
               Color.fromARGB(255, 45, 71, 55),
               Color.fromARGB(255, 124, 150, 112),
