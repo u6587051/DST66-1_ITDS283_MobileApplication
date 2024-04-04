@@ -45,16 +45,14 @@ class _Map extends State<Map> {
                       position: _currentP!),
                   Marker(
                     markerId: MarkerId("_Kanchana"),
-                    icon: BitmapDescriptor.defaultMarker,
+                    icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
                     position: _pKanchana,
                     onTap: () {
                       _showExpanded = !_showExpanded;
                     },
                   ),
                 },
-                zoomControlsEnabled: true,
                 zoomGesturesEnabled: true,
-                scrollGesturesEnabled: true,
               ),
               if (_showExpanded)
                 Expanded(
