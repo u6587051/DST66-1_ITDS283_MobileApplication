@@ -158,7 +158,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               //Antibody
               CircleAvatar(
-                backgroundColor: Color.fromARGB(255, 45, 71, 55),
+                backgroundColor: Colors.transparent,
                 radius: 50,
                 child: IconButton(
                   icon: Icon(

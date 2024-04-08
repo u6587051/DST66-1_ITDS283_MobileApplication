@@ -9,8 +9,11 @@ class Map extends StatefulWidget {
   State<Map> createState() => _Map();
 }
 
-class _Map extends State<Map> {
+class _Map extends State<Map> with SingleTickerProviderStateMixin {
   late GoogleMapController mapController;
+
+  late Animation<Offset> _offsetAnimation;
+  late AnimationController _controller;
 
   Location _locationController = new Location();
 
@@ -25,6 +28,17 @@ class _Map extends State<Map> {
     // TODO: implement initState
     super.initState();
     getLocationUpdates();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 500),
+    );
+    _offsetAnimation = Tween<Offset>(
+      begin: Offset(0.0, 1.0),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
   }
 
   @override
@@ -45,7 +59,8 @@ class _Map extends State<Map> {
                       position: _currentP!),
                   Marker(
                     markerId: MarkerId("_Kanchana"),
-                    icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
+                    icon: BitmapDescriptor.defaultMarkerWithHue(
+                        BitmapDescriptor.hueYellow),
                     position: _pKanchana,
                     onTap: () {
                       _showExpanded = !_showExpanded;
