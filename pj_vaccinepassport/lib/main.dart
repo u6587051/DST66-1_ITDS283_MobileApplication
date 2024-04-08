@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pj_vaccinepassport/common_pages/home-page.dart';
 import 'package:pj_vaccinepassport/common_pages/login-page.dart';
 import 'package:pj_vaccinepassport/common_pages/qr-page.dart';
+import 'package:pj_vaccinepassport/feature_page/antibody/antibody.dart';
 import 'package:pj_vaccinepassport/feature_page/map/map.dart';
 
 void main() {
@@ -16,6 +17,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Vaccine Passport',
         debugShowCheckedModeBanner: false,
-        home: QRinfo());
+        home: Antibody());
   }
 }
