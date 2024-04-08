@@ -158,92 +158,47 @@ class _HomePageState extends State<HomePage> {
             children: [
               //Antibody
               CircleAvatar(
-                backgroundColor: Colors.transparent,
+                backgroundColor: Color.fromARGB(255, 45, 71, 55),
                 radius: 50,
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: [0, 0.76, 0.96],
-                      colors: [
-                        Color.fromARGB(255, 45, 71, 55),
-                        Color.fromARGB(255, 124, 150, 112),
-                        Color.fromARGB(255, 176, 173, 140),
-                      ],
-                    ),
-                    shape: BoxShape.circle,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.bloodtype,
+                    color: Colors.white,
+                    size: 80,
                   ),
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.bloodtype,
-                      color: Colors.white,
-                      size: 80,
-                    ),
-                    onPressed: () {
-                      // Add your notification action here
-                    },
-                  ),
+                  onPressed: () {
+                    // Add your notification action here
+                  },
                 ),
               ),
               // History
               CircleAvatar(
-                backgroundColor: Colors.transparent,
+                backgroundColor: Color.fromARGB(255, 45, 71, 55),
                 radius: 50,
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: [0, 0.76, 0.96],
-                      colors: [
-                        Color.fromARGB(255, 45, 71, 55),
-                        Color.fromARGB(255, 124, 150, 112),
-                        Color.fromARGB(255, 176, 173, 140),
-                      ],
-                    ),
-                    shape: BoxShape.circle,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.folder_copy_rounded,
+                    color: Colors.white,
+                    size: 80,
                   ),
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.folder_copy_rounded,
-                      color: Colors.white,
-                      size: 80,
-                    ),
-                    onPressed: () {
-                      // Add your notification action here
-                    },
-                  ),
+                  onPressed: () {
+                    // Add your notification action here
+                  },
                 ),
               ),
               // Certificate
               CircleAvatar(
-                backgroundColor: Colors.transparent,
+                backgroundColor: Color.fromARGB(255, 45, 71, 55),
                 radius: 50,
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: [0, 0.76, 0.96],
-                      colors: [
-                        Color.fromARGB(255, 45, 71, 55),
-                        Color.fromARGB(255, 124, 150, 112),
-                        Color.fromARGB(255, 176, 173, 140),
-                      ],
-                    ),
-                    shape: BoxShape.circle,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.person,
+                    color: Colors.white,
+                    size: 80,
                   ),
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.person,
-                      color: Colors.white,
-                      size: 80,
-                    ),
-                    onPressed: () {
-                      // Add your notification action here
-                    },
-                  ),
+                  onPressed: () {
+                    // Add your notification action here
+                  },
                 ),
               ),
             ],
@@ -276,107 +231,47 @@ class _HomePageState extends State<HomePage> {
             children: [
               //Antibody
               CircleAvatar(
-                backgroundColor: Colors.transparent,
+                backgroundColor: Color.fromARGB(255, 45, 71, 55),
                 radius: 50,
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: [0, 0.76, 0.96],
-                      colors: [
-                        Color.fromARGB(255, 45, 71, 55),
-                        Color.fromARGB(255, 124, 150, 112),
-                        Color.fromARGB(255, 176, 173, 140),
-                      ],
-                    ),
-                    shape: BoxShape.circle,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.vaccines,
+                    color: Colors.white,
+                    size: 80,
                   ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        stops: [0, 0.76, 0.96],
-                        colors: [
-                          Color.fromARGB(255, 45, 71, 55),
-                          Color.fromARGB(255, 124, 150, 112),
-                          Color.fromARGB(255, 176, 173, 140),
-                        ],
-                      ),
-                      shape: BoxShape.circle,
-                    ),
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.vaccines,
-                        color: Colors.white,
-                        size: 80,
-                      ),
-                      onPressed: () {
-                        // Add your notification action here
-                      },
-                    ),
-                  ),
+                  onPressed: () {
+                    // Add your notification action here
+                  },
                 ),
               ),
               // History
               CircleAvatar(
-                backgroundColor: Colors.transparent,
+                backgroundColor: Color.fromARGB(255, 45, 71, 55),
                 radius: 50,
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: [0, 0.76, 0.96],
-                      colors: [
-                        Color.fromARGB(255, 45, 71, 55),
-                        Color.fromARGB(255, 124, 150, 112),
-                        Color.fromARGB(255, 176, 173, 140),
-                      ],
-                    ),
-                    shape: BoxShape.circle,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.calendar_month,
+                    color: Colors.white,
+                    size: 80,
                   ),
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.calendar_month,
-                      color: Colors.white,
-                      size: 80,
-                    ),
-                    onPressed: () {
-                      // Add your notification action here
-                    },
-                  ),
+                  onPressed: () {
+                    // Add your notification action here
+                  },
                 ),
               ),
               // Certificate
               CircleAvatar(
-                backgroundColor: Colors.transparent,
+                backgroundColor: Color.fromARGB(255, 45, 71, 55),
                 radius: 50,
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: [0, 0.76, 0.96],
-                      colors: [
-                        Color.fromARGB(255, 45, 71, 55),
-                        Color.fromARGB(255, 124, 150, 112),
-                        Color.fromARGB(255, 176, 173, 140),
-                      ],
-                    ),
-                    shape: BoxShape.circle,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.local_hospital,
+                    color: Colors.white,
+                    size: 80,
                   ),
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.local_hospital,
-                      color: Colors.white,
-                      size: 80,
-                    ),
-                    onPressed: () {
-                      // Add your notification action here
-                    },
-                  ),
+                  onPressed: () {
+                    // Add your notification action here
+                  },
                 ),
               ),
             ],
@@ -424,12 +319,7 @@ class _HomePageState extends State<HomePage> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 10),
                       child: CircleAvatar(
-                        backgroundColor: Color.fromARGB(
-                          255,
-                          147,
-                          147,
-                          147,
-                        ),
+                        backgroundColor: Color.fromARGB(255, 147, 147, 147,),
                         radius: 60,
                         child: IconButton(
                           icon: Icon(Icons.qr_code),
