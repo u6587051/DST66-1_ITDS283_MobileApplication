@@ -5,69 +5,94 @@ class CreateAccount1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size;
-
     return Scaffold(
-      body: Container(
-        width: screenSize.width,
-        height: 126,
-        padding: const EdgeInsets.only(
-          top: 57,
-          left: 22,
-          right: 123,
-          bottom: 33,
-        ),
-        clipBehavior: Clip.antiAlias,
-        decoration: ShapeDecoration(
-          gradient: LinearGradient(
-            begin: Alignment(0.99, -0.12),
-            end: Alignment(-0.99, 0.12),
-            colors: [Color(0xFF2D4737), Color(0xE5B7BF96), Color(0xFF7C9670)],
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(60),
+          child: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    stops: [0, 1],
+                    colors: [
+                      Color.fromARGB(255, 45, 71, 55),
+                      Color.fromARGB(255, 124, 150, 112),
+                    ],
+                  ),
+                ),
+              ),
+              AppBar(
+                backgroundColor: Colors.transparent, // Make app bar transparent
+                elevation: 0, // Remove app bar shadow
+                leading: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back_ios_new,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {},
+                ),
+                title: Padding(
+                  padding: const EdgeInsets.only(left: 75),
+                  child: Text(
+                    "สร้างบัญชี",
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
           ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            ),
-          ),
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              width: 36,
-              height: 36,
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: 0,
-                    top: 0,
-                    child: Container(
-                      width: 36,
-                      height: 36,
-                      decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
+        body: Container(
+          child: Column(children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 20, 0, 0),
+                  child: Text(
+                    'เลขประจำตัวประชาชน',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 45, 71, 55),
+                      fontSize: 18,
+                      fontFamily: 'Kanit',
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ],
+                ),
+              ],
+            ),
+            SizedBox(height: 5),
+            SizedBox(
+              width: 330,
+              height: 45,
+              child: TextField(
+                maxLength: 13,
+                decoration: InputDecoration(
+                  counterText: '',
+                  hintText: '1234567890123',
+                  fillColor: Colors.grey[300],
+                  filled: true,
+                  labelStyle: TextStyle(color: Colors.black),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0)),
+                  contentPadding: EdgeInsets.all(16),
+                ),
+                style: TextStyle(color: Colors.black),
               ),
             ),
-            Text(
-              'สร้างบัญชี',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 26,
-                fontFamily: 'Kanit',
-                fontWeight: FontWeight.w400,
-                height: 0.03,
-                letterSpacing: 0.25,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+          ]),
+        ));
   }
 }

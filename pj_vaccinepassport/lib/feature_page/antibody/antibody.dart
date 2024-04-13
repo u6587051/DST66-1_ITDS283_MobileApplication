@@ -24,27 +24,38 @@ class Antibody extends StatelessWidget {
               ),
             ),
             AppBar(
-                backgroundColor: Colors.transparent, // Make app bar transparent
-                elevation: 0, // Remove app bar shadow
-                leading: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back_ios_new,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {},
-                ),title: Padding(
-                  padding: const EdgeInsets.only(left: 80),
-                  child: Text("Antibody", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),),
+              backgroundColor: Colors.transparent, // Make app bar transparent
+              elevation: 0, // Remove app bar shadow
+              leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Colors.white,
                 ),
+                onPressed: () {},
+              ),
+              title: Padding(
+                padding: const EdgeInsets.only(left: 80),
+                child: Text(
+                  "Antibody",
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
+              ),
+            ),
           ],
         ),
       ),
-      body: Container(child: Column(children: [
-        Row(
-          children: [Text()],
-        )
-      ],),),
+      body: Container(
+        child: Column(
+          children: [
+            Row(
+              children: [Text('Hello')],
+            )
+          ],
+        ),
+      ),
     );
   }
 }
