@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "476943143262",
+    "project_id": "vaccine-passport-pj",
+    "storage_bucket": "vaccine-passport-pj.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476943143262:android:3eaea96f23654da1b7bfcf",
+        "android_client_info": {
+          "package_name": "com.example.pj_vaccinepassport"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGFKRqVMxvm9NWL8e3YCjbwl0q_McPLjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

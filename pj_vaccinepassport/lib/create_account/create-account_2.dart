@@ -84,7 +84,7 @@ class _CreateAccount2State extends State<CreateAccount2> {
               height: 45,
               child: TextFormField(
                 keyboardType: TextInputType.text,
-                maxLength: 6,
+                maxLength: 25,
                 decoration: InputDecoration(
                   counterText: '',
                   hintText: 'นาย',
@@ -215,6 +215,7 @@ class _CreateAccount2State extends State<CreateAccount2> {
               height: 45,
               child: TextFormField(
                 controller: _date,
+                keyboardType: TextInputType.datetime,
                 decoration: InputDecoration(
                   suffixIcon: Icon(
                     Icons.calendar_month_rounded,
