@@ -31,7 +31,9 @@ class CreateAccount1 extends StatelessWidget {
                     Icons.arrow_back_ios_new,
                     color: Colors.white,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                 ),
                 title: Padding(
                   padding: const EdgeInsets.only(left: 75),
@@ -71,11 +73,54 @@ class CreateAccount1 extends StatelessWidget {
             SizedBox(
               width: 330,
               height: 45,
-              child: TextField(
+              child: TextFormField(
                 maxLength: 13,
                 decoration: InputDecoration(
                   counterText: '',
                   hintText: '1234567890123',
+                  fillColor: Colors.grey[300],
+                  filled: true,
+                  labelStyle: TextStyle(color: Colors.black),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0)),
+                  contentPadding: EdgeInsets.all(16),
+                ),
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 20, 0, 0),
+                  child: Text(
+                    'หมายเลขหนังสือเดินทาง',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 45, 71, 55),
+                      fontSize: 18,
+                      fontFamily: 'Kanit',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 5),
+            SizedBox(
+              width: 330,
+              height: 45,
+              child: TextFormField(
+                maxLength: 8,
+                decoration: InputDecoration(
+                  counterText: '',
+                  hintText: 'AA123456',
                   fillColor: Colors.grey[300],
                   filled: true,
                   labelStyle: TextStyle(color: Colors.black),

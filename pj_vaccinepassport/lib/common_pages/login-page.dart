@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:pj_vaccinepassport/create_account/create-account_1.dart';
 
 class LogInPage extends StatelessWidget {
   const LogInPage({super.key});
@@ -13,7 +15,7 @@ class LogInPage extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            stops: [0,0.36,0.56,0.77],
+            stops: [0, 0.36, 0.56, 0.77],
             colors: [
               Color.fromARGB(204, 45, 71, 55),
               Color.fromARGB(255, 124, 150, 112),
@@ -157,7 +159,13 @@ class LogInPage extends StatelessWidget {
               Container(
                 alignment: Alignment.bottomCenter,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CreateAccount1()),
+                    );
+                  },
                   child: Text(
                     'สร้างบัญชีใหม่',
                     style: TextStyle(color: Colors.white),
