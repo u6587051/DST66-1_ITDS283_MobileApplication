@@ -1,5 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:pj_vaccinepassport/common_pages/login-page.dart';
+import 'package:pj_vaccinepassport/feature_page/antibody/antibody.dart';
+import 'package:pj_vaccinepassport/feature_page/map/healthlocation.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key});
@@ -20,6 +25,8 @@ final List<String> imagePath = [
 int _activePage = 0;
 
 class _HomePageState extends State<HomePage> {
+  final auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +79,47 @@ class _HomePageState extends State<HomePage> {
                     size: 40,
                   ),
                   onPressed: () {
-                    // Add your exit action here
+                    print("exit clicked");
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return CupertinoAlertDialog(
+                            title: Center(
+                                child: Icon(
+                              Icons.assignment_late_outlined,
+                              size: 50,
+                              // color: Color.fromARGB(1, 71, 67, 68),
+                            )),
+                            content: Text(
+                                "แจ้งเตือน\n\nคุณต้องการออกจากระบบหรือไม่"),
+                            actions: [
+                              IconButton(
+                                iconSize: 50,
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: Icon(
+                                  Icons.cancel,
+                                  color: Colors.red[900],
+                                ),
+                              ),
+                              IconButton(
+                                iconSize: 50,
+                                onPressed: () {
+                                  auth.signOut().then((value) {
+                                    Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) {
+                                      return LogInPage();
+                                    })));
+                                  });
+                                },
+                                icon: Icon(
+                                  Icons.check_circle,
+                                  color: Colors.green[900],
+                                ),
+                              )
+                            ],
+                          );
+                        });
                   },
                 ),
               ],
@@ -158,7 +205,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               //Antibody
               CircleAvatar(
-                backgroundColor: Colors.transparent,
+                backgroundColor: Color.fromARGB(255, 45, 71, 55),
                 radius: 50,
                 child: IconButton(
                   icon: Icon(
@@ -167,7 +214,9 @@ class _HomePageState extends State<HomePage> {
                     size: 80,
                   ),
                   onPressed: () {
-                    // Add your notification action here
+                    Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return Antibody();
+                    }));
                   },
                 ),
               ),
@@ -229,7 +278,7 @@ class _HomePageState extends State<HomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              //Antibody
+              //ข้อมูลวัคซีน
               CircleAvatar(
                 backgroundColor: Color.fromARGB(255, 45, 71, 55),
                 radius: 50,
@@ -244,7 +293,7 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
               ),
-              // History
+              // ปฏิทิน
               CircleAvatar(
                 backgroundColor: Color.fromARGB(255, 45, 71, 55),
                 radius: 50,
@@ -259,7 +308,7 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
               ),
-              // Certificate
+              // Location
               CircleAvatar(
                 backgroundColor: Color.fromARGB(255, 45, 71, 55),
                 radius: 50,
@@ -270,7 +319,9 @@ class _HomePageState extends State<HomePage> {
                     size: 80,
                   ),
                   onPressed: () {
-                    // Add your notification action here
+                   Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return MapHealth();
+                   }));
                   },
                 ),
               ),
@@ -319,7 +370,12 @@ class _HomePageState extends State<HomePage> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 10),
                       child: CircleAvatar(
-                        backgroundColor: Color.fromARGB(255, 147, 147, 147,),
+                        backgroundColor: Color.fromARGB(
+                          255,
+                          147,
+                          147,
+                          147,
+                        ),
                         radius: 60,
                         child: IconButton(
                           icon: Icon(Icons.qr_code),
