@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -229,7 +230,34 @@ class _LogInPageState extends State<LogInPage> {
                                   }));
                                 });
                               } on FirebaseAuthException catch (e) {
+                                String? message;
                                 print(e.message);
+                                print(e.code);
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return CupertinoAlertDialog(
+                                      title: Center(
+                                          child: Icon(
+                                        Icons.assignment_late_outlined,
+                                        size: 50,
+                                      )),
+                                      content: Text(
+                                          "แจ้งเตือน\n\nอีเมลหรือรหัสผ่านไม่ถูกต้อง"),
+                                      actions: [
+                                        IconButton(
+                                          iconSize: 50,
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          icon: Icon(
+                                            Icons.cancel,
+                                            color: Colors.red[900],
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  });
                               }
                             }
                           },
