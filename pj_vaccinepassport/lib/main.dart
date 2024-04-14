@@ -6,6 +6,7 @@ import 'package:pj_vaccinepassport/create_account/create-account_1.dart';
 import 'package:pj_vaccinepassport/create_account/create-account_2.dart';
 import 'package:pj_vaccinepassport/feature_page/antibody/antibody.dart';
 import 'package:pj_vaccinepassport/feature_page/map/map.dart';
+import 'package:pj_vaccinepassport/feature_page/calendar/calendar.dart';
 
 void main() {
   runApp(const MyApp());
