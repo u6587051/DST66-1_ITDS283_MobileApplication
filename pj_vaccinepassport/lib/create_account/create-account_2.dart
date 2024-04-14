@@ -93,7 +93,7 @@ class _CreateAccount2State extends State<CreateAccount2> {
                 height: 45,
                 child: TextFormField(
                   onSaved: (title) {
-                    widget.profile.Title = title;
+                    widget.profile.Title = title!;
                   },
                   keyboardType: TextInputType.text,
                   maxLength: 25,
@@ -140,7 +140,7 @@ class _CreateAccount2State extends State<CreateAccount2> {
                 height: 45,
                 child: TextFormField(
                   onSaved: (fname) {
-                    widget.profile.Firstname = fname;
+                    widget.profile.Firstname = fname!;
                   },
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
@@ -186,7 +186,7 @@ class _CreateAccount2State extends State<CreateAccount2> {
                 height: 45,
                 child: TextFormField(
                   onSaved: (lname) {
-                    widget.profile.Surname = lname;
+                    widget.profile.Surname = lname!;
                   },
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
@@ -232,7 +232,7 @@ class _CreateAccount2State extends State<CreateAccount2> {
                 height: 45,
                 child: TextFormField(
                   onSaved: (dob) {
-                    widget.profile.DoB = dob;
+                    widget.profile.DoB = dob!;
                   },
                   keyboardType: TextInputType.datetime,
                   decoration: InputDecoration(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:pj_vaccinepassport/create_account/create-account_2.dart';
 import 'package:pj_vaccinepassport/model/Profile.dart';
 
@@ -12,7 +13,15 @@ class CreateAccount1 extends StatefulWidget {
 
 class _CreateAccount1State extends State<CreateAccount1> {
   final formkey = GlobalKey<FormState>();
-  Profile profile = Profile();
+  Profile profile = Profile(
+      CitizenID: '',
+      PassportNumber: '',
+      Phonenumber: '',
+      Password: '',
+      Title: '',
+      Firstname: '',
+      Surname: '',
+      DoB: '');
 
   @override
   Widget build(BuildContext context) {
@@ -86,10 +95,13 @@ class _CreateAccount1State extends State<CreateAccount1> {
               SizedBox(height: 5),
               SizedBox(
                 width: 330,
-                height: 45,
+                height: 60,
                 child: TextFormField(
+                  validator: MultiValidator([RequiredValidator(
+                      errorText: "กรุณาป้อนหมายเลขบัตรประจำตัวประชาชน 13 หลัก"),
+                      MinLengthValidator(13, errorText: "กรุณาป้อนหมายเลขพาสปอร์ตขั้นต่ำ 13 หลัก")]), 
                   onSaved: (citizenid) {
-                    profile.CitizenID = citizenid;
+                    profile.CitizenID = citizenid!;
                   },
                   keyboardType: TextInputType.number,
                   inputFormatters: <TextInputFormatter>[
@@ -139,12 +151,15 @@ class _CreateAccount1State extends State<CreateAccount1> {
               SizedBox(height: 5),
               SizedBox(
                 width: 330,
-                height: 45,
+                height: 60,
                 child: TextFormField(
+                  validator: MultiValidator([RequiredValidator(
+                      errorText: "กรุณาป้อนหมายเลขพาสปอร์ต 6-7 หลัก"),
+                      MinLengthValidator(6, errorText: "กรุณาป้อนหมายเลขพาสปอร์ตขั้นต่ำ 6 หลัก")]), 
                   onSaved: (passportnumber) {
-                    profile.PassportNumber = passportnumber;
+                    profile.PassportNumber = passportnumber!;
                   },
-                  maxLength: 8,
+                  maxLength: 7,
                   decoration: InputDecoration(
                     counterText: '',
                     hintText: 'AA123456',
@@ -185,10 +200,12 @@ class _CreateAccount1State extends State<CreateAccount1> {
               SizedBox(height: 5),
               SizedBox(
                 width: 330,
-                height: 45,
+                height: 60,
                 child: TextFormField(
+                  validator:
+                      RequiredValidator(errorText: "กรุณาป้อนเบอร์โทรศัพท์"),
                   onSaved: (phonenumber) {
-                    profile.Phonenumber = phonenumber;
+                    profile.Phonenumber = phonenumber!;
                   },
                   keyboardType: TextInputType.number,
                   inputFormatters: <TextInputFormatter>[
@@ -238,10 +255,12 @@ class _CreateAccount1State extends State<CreateAccount1> {
               SizedBox(height: 5),
               SizedBox(
                 width: 330,
-                height: 45,
+                height: 60,
                 child: TextFormField(
+                  validator:
+                      MultiValidator([RequiredValidator(errorText:"กรุณารหัสผ่าน"), MinLengthValidator(6, errorText: "กำหนดรหัสผ่านขั้นต่ำอย่างน้อย 6 ตัว")]),
                   onSaved: (password) {
-                    profile.Password = password;
+                    profile.Password = password!;
                   },
                   obscureText: true,
                   maxLength: 25,
@@ -267,15 +286,18 @@ class _CreateAccount1State extends State<CreateAccount1> {
               SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  formkey.currentState?.save();
-                  print(
-                      "email = ${profile.CitizenID} password = ${profile.Password}, PhoneNO = ${profile.Phonenumber}, Passport = ${profile.PassportNumber}");
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CreateAccount2(profile: profile)),
-                  );
-                  formkey.currentState?.reset();
+                  if (formkey.currentState!.validate()) {
+                    formkey.currentState?.save();
+                    print(
+                        "email = ${profile.CitizenID} password = ${profile.Password}, PhoneNO = ${profile.Phonenumber}, Passport = ${profile.PassportNumber}");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              CreateAccount2(profile: profile)),
+                    );
+                    formkey.currentState?.reset();
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
