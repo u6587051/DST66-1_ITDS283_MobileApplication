@@ -19,7 +19,8 @@ class _CreateAccount2State extends State<CreateAccount2> {
   final formkey = GlobalKey<FormState>();
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
 
-  // TextEditingController _date = TextEditingController();
+  TextEditingController datectl = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -259,6 +260,25 @@ class _CreateAccount2State extends State<CreateAccount2> {
                         width: 330,
                         height: 60,
                         child: TextFormField(
+                          controller: datectl,
+                          onTap: () async {
+                            DateTime? date = DateTime(1900);
+                            FocusScope.of(context)
+                                .requestFocus(new FocusNode());
+
+                            date = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1900),
+                                lastDate: DateTime(2100));
+                            datectl.text = date!.toIso8601String();
+                            if (date != null) {
+                              setState(() {
+                                datectl.text =
+                                    DateFormat('dd-MM-yyyy').format(date!);
+                              });
+                            }
+                          },
                           validator: MultiValidator([
                             RequiredValidator(
                                 errorText: "กรุณาระบุ วัน/เดือน/ปีเกิด"),
@@ -294,20 +314,20 @@ class _CreateAccount2State extends State<CreateAccount2> {
                       ),
                       SizedBox(height: 30),
                       ElevatedButton(
-                        onPressed: () async{
+                        onPressed: () async {
                           if (formkey.currentState!.validate()) {
                             formkey.currentState?.save();
-                            try{
-                            print(
-                                "email = ${widget.profile.CitizenID} password = ${widget.profile.Password}, PhoneNO = ${widget.profile.Phonenumber}, Passport = ${widget.profile.PassportNumber}");
-                            print(
-                                "gender = ${widget.profile.Gender} fname  = ${widget.profile.Firstname} lname = ${widget.profile.Surname} dob = ${widget.profile.DoB}");
-                            await FirebaseAuth.instance
-                                .createUserWithEmailAndPassword(
-                                    email: widget.profile.Email,
-                                    password: widget.profile.Password);
-                            formkey.currentState?.reset();
-                            }on FirebaseAuthException catch(e){
+                            try {
+                              print(
+                                  "email = ${widget.profile.CitizenID} password = ${widget.profile.Password}, PhoneNO = ${widget.profile.Phonenumber}, Passport = ${widget.profile.PassportNumber}");
+                              print(
+                                  "gender = ${widget.profile.Gender} fname  = ${widget.profile.Firstname} lname = ${widget.profile.Surname} dob = ${widget.profile.DoB}");
+                              await FirebaseAuth.instance
+                                  .createUserWithEmailAndPassword(
+                                      email: widget.profile.Email,
+                                      password: widget.profile.Password);
+                              formkey.currentState?.reset();
+                            } on FirebaseAuthException catch (e) {
                               print(e.message);
                             }
                           }
@@ -337,20 +357,22 @@ class _CreateAccount2State extends State<CreateAccount2> {
           );
         });
   }
-}
-
-  // }
 
   // Future<void> _selectDate() async {
   //   DateTime? pickeddate = await showDatePicker(
   //       context: context,
   //       initialDate: DateTime.now(),
   //       firstDate: DateTime(1950),
-  //       lastDate: DateTime(2024));
+  //       lastDate: DateTime(2100));
   //   if (pickeddate != null) {
   //     setState(() {
-  //       _date.text = DateFormat('dd-MM-yyyy').format(pickeddate);
+  //       datectl.text = DateFormat('dd-MM-yyyy').format(pickeddate);
   //     });
   //   }
   // }
+}
+
+  // }
+
+
 // }
