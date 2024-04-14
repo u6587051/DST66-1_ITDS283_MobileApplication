@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:intl/intl.dart';
+import 'package:pj_vaccinepassport/common_pages/login-page.dart';
 import 'package:pj_vaccinepassport/model/Profile.dart';
 
 class CreateAccount2 extends StatefulWidget {
@@ -327,8 +328,10 @@ class _CreateAccount2State extends State<CreateAccount2> {
                                       email: widget.profile.Email,
                                       password: widget.profile.Password);
                               formkey.currentState?.reset();
+                              Navigator.of(context)..pop()..pop();
                             } on FirebaseAuthException catch (e) {
                               print(e.message);
+
                             }
                           }
                         },

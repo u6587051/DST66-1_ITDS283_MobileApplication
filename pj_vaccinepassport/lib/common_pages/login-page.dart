@@ -15,7 +15,7 @@ class LogInPage extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            stops: [0, 0.36, 0.56, 0.77],
+            stops: [0, 0.60, 0.80, 0.99],
             colors: [
               Color.fromARGB(204, 45, 71, 55),
               Color.fromARGB(255, 124, 150, 112),
@@ -70,7 +70,7 @@ class LogInPage extends StatelessWidget {
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 12,
+                          fontSize: 16,
                           fontFamily: 'Kanit',
                           fontWeight: FontWeight.bold,
                         ),
@@ -80,6 +80,7 @@ class LogInPage extends StatelessWidget {
                         width: 300,
                         height: 40,
                         child: TextField(
+                          keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             fillColor: Colors.white,
                             filled: true,
@@ -111,7 +112,7 @@ class LogInPage extends StatelessWidget {
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 12,
+                          fontSize: 16,
                           fontFamily: 'Kanit',
                           fontWeight: FontWeight.bold,
                         ),
@@ -121,6 +122,8 @@ class LogInPage extends StatelessWidget {
                         width: 300,
                         height: 40,
                         child: TextField(
+                          keyboardType: TextInputType.visiblePassword,
+                          obscureText: true,
                           decoration: InputDecoration(
                             fillColor: Colors.white,
                             filled: true,
@@ -156,6 +159,7 @@ class LogInPage extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: 240,),
               Container(
                 alignment: Alignment.bottomCenter,
                 child: TextButton(
@@ -166,9 +170,20 @@ class LogInPage extends StatelessWidget {
                           builder: (context) => const CreateAccount1()),
                     );
                   },
-                  child: Text(
-                    'สร้างบัญชีใหม่',
-                    style: TextStyle(color: Colors.white),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'ยังไม่มีบัญชี? ',
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                      Text('สร้างบัญชีใหม่',
+                          style: TextStyle(
+                            color: Color(0xFF2D4737),
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
+                          ))
+                    ],
                   ),
                 ),
               ),

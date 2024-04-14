@@ -19,6 +19,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Vaccine Passport',
         debugShowCheckedModeBanner: false,
-        home: CreateAccount1());
+        home: LogInPage());
   }
 }
