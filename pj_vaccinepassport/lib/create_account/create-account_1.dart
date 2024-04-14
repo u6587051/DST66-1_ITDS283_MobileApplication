@@ -270,12 +270,12 @@ class _CreateAccount1State extends State<CreateAccount1> {
                   formkey.currentState?.save();
                   print(
                       "email = ${profile.CitizenID} password = ${profile.Password}, PhoneNO = ${profile.Phonenumber}, Passport = ${profile.PassportNumber}");
-                  formkey.currentState?.reset();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const CreateAccount2()),
+                        builder: (context) => CreateAccount2(profile: profile)),
                   );
+                  formkey.currentState?.reset();
                 },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,

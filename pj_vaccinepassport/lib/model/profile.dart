@@ -6,7 +6,7 @@ class Profile {
   String? Title;
   String? Firstname;
   String? Surname;
-  DateTime? DoB;
+  String? DoB;
 
   Profile(
       {this.CitizenID,

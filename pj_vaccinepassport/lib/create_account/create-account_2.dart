@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:pj_vaccinepassport/model/Profile.dart';
 
 class CreateAccount2 extends StatefulWidget {
-  const CreateAccount2({Key? key}) : super(key: key);
+  final Profile profile;
+
+  const CreateAccount2({super.key, required this.profile});
+
+
 
   @override
   State<CreateAccount2> createState() => _CreateAccount2State();
 }
 
 class _CreateAccount2State extends State<CreateAccount2> {
+  final formkey = GlobalKey<FormState>();
+
   TextEditingController _date = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -59,208 +66,223 @@ class _CreateAccount2State extends State<CreateAccount2> {
           ),
         ),
         body: Container(
-          child: Column(children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 20, 0, 0),
-                  child: Text(
-                    'คำนำหน้า',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 45, 71, 55),
-                      fontSize: 18,
-                      fontFamily: 'Kanit',
-                      fontWeight: FontWeight.bold,
+          child: Form(
+            key: formkey,
+            child: Column(children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(30, 20, 0, 0),
+                    child: Text(
+                      'คำนำหน้า',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 45, 71, 55),
+                        fontSize: 18,
+                        fontFamily: 'Kanit',
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(height: 5),
-            SizedBox(
-              width: 330,
-              height: 45,
-              child: TextFormField(
-                keyboardType: TextInputType.text,
-                maxLength: 25,
-                decoration: InputDecoration(
-                  counterText: '',
-                  hintText: 'นาย',
-                  fillColor: Colors.grey[300],
-                  filled: true,
-                  labelStyle: TextStyle(color: Colors.black),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  contentPadding: EdgeInsets.all(16),
-                ),
-                style: TextStyle(color: Colors.black),
+                ],
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 20, 0, 0),
-                  child: Text(
-                    'ชื่อ',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 45, 71, 55),
-                      fontSize: 18,
-                      fontFamily: 'Kanit',
-                      fontWeight: FontWeight.bold,
+              SizedBox(height: 5),
+              SizedBox(
+                width: 330,
+                height: 45,
+                child: TextFormField(
+                  onSaved: (title) {
+                    widget.profile.Title = title;
+                  },
+                  keyboardType: TextInputType.text,
+                  maxLength: 25,
+                  decoration: InputDecoration(
+                    counterText: '',
+                    hintText: 'นาย',
+                    fillColor: Colors.grey[300],
+                    filled: true,
+                    labelStyle: TextStyle(color: Colors.black),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
                     ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0)),
+                    contentPadding: EdgeInsets.all(16),
                   ),
+                  style: TextStyle(color: Colors.black),
                 ),
-              ],
-            ),
-            SizedBox(height: 5),
-            SizedBox(
-              width: 330,
-              height: 45,
-              child: TextFormField(
-                keyboardType: TextInputType.name,
-                decoration: InputDecoration(
-                  counterText: '',
-                  hintText: 'เอเมอร์สัน',
-                  fillColor: Colors.grey[300],
-                  filled: true,
-                  labelStyle: TextStyle(color: Colors.black),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  contentPadding: EdgeInsets.all(16),
-                ),
-                style: TextStyle(color: Colors.black),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 20, 0, 0),
-                  child: Text(
-                    'นามสกุล',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 45, 71, 55),
-                      fontSize: 18,
-                      fontFamily: 'Kanit',
-                      fontWeight: FontWeight.bold,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(30, 20, 0, 0),
+                    child: Text(
+                      'ชื่อ',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 45, 71, 55),
+                        fontSize: 18,
+                        fontFamily: 'Kanit',
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(height: 5),
-            SizedBox(
-              width: 330,
-              height: 45,
-              child: TextFormField(
-                keyboardType: TextInputType.name,
-                decoration: InputDecoration(
-                  counterText: '',
-                  hintText: 'คอร์สการ์ด',
-                  fillColor: Colors.grey[300],
-                  filled: true,
-                  labelStyle: TextStyle(color: Colors.black),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  contentPadding: EdgeInsets.all(16),
-                ),
-                style: TextStyle(color: Colors.black),
+                ],
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 20, 0, 0),
-                  child: Text(
-                    'วันเดือนปีเกิด',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 45, 71, 55),
-                      fontSize: 18,
-                      fontFamily: 'Kanit',
-                      fontWeight: FontWeight.bold,
+              SizedBox(height: 5),
+              SizedBox(
+                width: 330,
+                height: 45,
+                child: TextFormField(
+                  onSaved: (fname) {
+                    widget.profile.Firstname = fname;
+                  },
+                  keyboardType: TextInputType.name,
+                  decoration: InputDecoration(
+                    counterText: '',
+                    hintText: 'เอเมอร์สัน',
+                    fillColor: Colors.grey[300],
+                    filled: true,
+                    labelStyle: TextStyle(color: Colors.black),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0)),
+                    contentPadding: EdgeInsets.all(16),
+                  ),
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(30, 20, 0, 0),
+                    child: Text(
+                      'นามสกุล',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 45, 71, 55),
+                        fontSize: 18,
+                        fontFamily: 'Kanit',
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
+                ],
+              ),
+              SizedBox(height: 5),
+              SizedBox(
+                width: 330,
+                height: 45,
+                child: TextFormField(
+                  onSaved: (lname) {
+                    widget.profile.Surname = lname;
+                  },
+                  keyboardType: TextInputType.name,
+                  decoration: InputDecoration(
+                    counterText: '',
+                    hintText: 'คอร์สการ์ด',
+                    fillColor: Colors.grey[300],
+                    filled: true,
+                    labelStyle: TextStyle(color: Colors.black),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0)),
+                    contentPadding: EdgeInsets.all(16),
+                  ),
+                  style: TextStyle(color: Colors.black),
                 ),
-              ],
-            ),
-
-            SizedBox(height: 5),
-            SizedBox(
-              width: 330,
-              height: 45,
-              child: TextFormField(
-                controller: _date,
-                keyboardType: TextInputType.datetime,
-                decoration: InputDecoration(
-                  suffixIcon: Icon(
-                    Icons.calendar_month_rounded,
-                    color: Color.fromARGB(255, 45, 71, 55),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(30, 20, 0, 0),
+                    child: Text(
+                      'วันเดือนปีเกิด',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 45, 71, 55),
+                        fontSize: 18,
+                        fontFamily: 'Kanit',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                  hintText: '1/2/1999',
-                  fillColor: Colors.grey[300],
-                  filled: true,
-                  labelStyle: TextStyle(color: Colors.black),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                ],
+              ),
+              SizedBox(height: 5),
+              SizedBox(
+                width: 330,
+                height: 45,
+                child: TextFormField(
+                  onSaved: (dob) {
+                    widget.profile.DoB = dob;
+                  },
+                  keyboardType: TextInputType.datetime,
+                  decoration: InputDecoration(
+                    suffixIcon: Icon(
+                      Icons.calendar_month_rounded,
+                      color: Color.fromARGB(255, 45, 71, 55),
+                    ),
+                    hintText: '1/2/1999',
+                    fillColor: Colors.grey[300],
+                    filled: true,
+                    labelStyle: TextStyle(color: Colors.black),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0)),
+                    contentPadding: EdgeInsets.all(16),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  contentPadding: EdgeInsets.all(16),
+                  style: TextStyle(color: Colors.black),
                 ),
-                style: TextStyle(color: Colors.black),
-                onTap: () {
-                  _selectDate();
+              ),
+              SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () {
+                  formkey.currentState?.save();
+                  print(
+                      "email = ${widget.profile.CitizenID} password = ${widget.profile.Password}, PhoneNO = ${widget.profile.Phonenumber}, Passport = ${widget.profile.PassportNumber}");
+                  print(
+                      "title = ${widget.profile.Title} fname  = ${widget.profile.Firstname} lname = ${widget.profile.Surname} dob = ${widget.profile.DoB}");
+                  formkey.currentState?.reset();
                 },
-              ),
-              
-            ),
-
-            SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Color(0xFF76A186),
-              ),
-              child: Text(
-                'ถัดไป',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontFamily: 'Kanit',
-                  fontWeight: FontWeight.bold,
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Color(0xFF76A186),
+                ),
+                child: Text(
+                  'ถัดไป',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontFamily: 'Kanit',
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-          ]),
+            ]),
+          ),
         ));
   }
 
