@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
-class Map extends StatefulWidget {
-  const Map({super.key});
+class MapHealth extends StatefulWidget {
+  const MapHealth({super.key});
 
   @override
-  State<Map> createState() => _Map();
+  State<MapHealth> createState() => _MapHealth();
 }
 
-class _Map extends State<Map> with SingleTickerProviderStateMixin {
+class _MapHealth extends State<MapHealth> with SingleTickerProviderStateMixin {
   late GoogleMapController mapController;
 
   late Animation<Offset> _offsetAnimation;

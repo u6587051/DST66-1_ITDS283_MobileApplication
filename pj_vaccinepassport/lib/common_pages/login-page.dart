@@ -17,6 +17,7 @@ class LogInPage extends StatefulWidget {
 
 class _LogInPageState extends State<LogInPage> {
   final formkey = GlobalKey<FormState>();
+
   Profile profile = Profile(
       CitizenID: '',
       PassportNumber: '',
@@ -222,7 +223,8 @@ class _LogInPageState extends State<LogInPage> {
                                         password: profile.Password)
                                     .then((value) {
                                   formkey.currentState?.reset();
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                                  Navigator.pushReplacement(context,
+                                      MaterialPageRoute(builder: (context) {
                                     return HomePage();
                                   }));
                                 });

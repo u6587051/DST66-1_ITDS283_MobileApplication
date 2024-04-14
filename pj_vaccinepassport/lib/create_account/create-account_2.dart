@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:intl/intl.dart';
 import 'package:pj_vaccinepassport/common_pages/login-page.dart';
@@ -334,7 +336,39 @@ class _CreateAccount2State extends State<CreateAccount2> {
                                   ..pop();
                               });
                             } on FirebaseAuthException catch (e) {
+                              late String message;
                               print(e.message);
+                              if (e.code == 'email-already-in-use') {
+                                message =
+                                    "ตรวจพบอีเมลนี้ในระบบโปรดใช้อีเมลอื่น";
+                              } else if (e.code == 'weak-password') {
+                                message = "รหัสผ่านต้องมีความยาวขั้นต่ำ 6 ตัว";
+                              }
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return CupertinoAlertDialog(
+                                      title: Center(
+                                          child: Icon(
+                                        Icons.assignment_late_outlined,
+                                        size: 50,
+                                      )),
+                                      content: Text(
+                                          "แจ้งเตือน\n\n${message}"),
+                                      actions: [
+                                        IconButton(
+                                          iconSize: 50,
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          icon: Icon(
+                                            Icons.cancel,
+                                            color: Colors.red[900],
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  });
                             }
                           }
                         },
@@ -363,22 +397,4 @@ class _CreateAccount2State extends State<CreateAccount2> {
           );
         });
   }
-
-  // Future<void> _selectDate() async {
-  //   DateTime? pickeddate = await showDatePicker(
-  //       context: context,
-  //       initialDate: DateTime.now(),
-  //       firstDate: DateTime(1950),
-  //       lastDate: DateTime(2100));
-  //   if (pickeddate != null) {
-  //     setState(() {
-  //       datectl.text = DateFormat('dd-MM-yyyy').format(pickeddate);
-  //     });
-  //   }
-  // }
 }
-
-  // }
-
-
-// }
