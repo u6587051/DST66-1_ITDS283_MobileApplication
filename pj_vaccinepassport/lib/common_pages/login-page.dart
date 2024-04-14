@@ -66,7 +66,7 @@ class LogInPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'เลขประจำตัวประชาชน หรือ เบอร์มือถือ',
+                        'อีเมล',
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           color: Colors.white,

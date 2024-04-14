@@ -2,8 +2,9 @@ class Profile {
   String CitizenID;
   String PassportNumber;
   String Phonenumber;
+  String Email;
   String Password;
-  String Title;
+  String Gender;
   String Firstname;
   String Surname;
   String DoB;
@@ -11,8 +12,9 @@ class Profile {
   Profile({required this.CitizenID,
     required  this.PassportNumber,
     required  this.Phonenumber,
+    required  this.Email,
     required  this.Password,
-    required  this.Title,
+    required  this.Gender,
     required  this.Firstname,
     required  this.Surname,
     required  this.DoB});

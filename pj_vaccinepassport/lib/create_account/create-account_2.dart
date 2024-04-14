@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:intl/intl.dart';
 import 'package:pj_vaccinepassport/model/Profile.dart';
 
@@ -8,8 +9,6 @@ class CreateAccount2 extends StatefulWidget {
 
   const CreateAccount2({super.key, required this.profile});
 
-
-
   @override
   State<CreateAccount2> createState() => _CreateAccount2State();
 }
@@ -17,7 +16,7 @@ class CreateAccount2 extends StatefulWidget {
 class _CreateAccount2State extends State<CreateAccount2> {
   final formkey = GlobalKey<FormState>();
 
-  TextEditingController _date = TextEditingController();
+  // TextEditingController _date = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +74,7 @@ class _CreateAccount2State extends State<CreateAccount2> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(30, 20, 0, 0),
                     child: Text(
-                      'คำนำหน้า',
+                      'เพศ',
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         color: Color.fromARGB(255, 45, 71, 55),
@@ -90,16 +89,21 @@ class _CreateAccount2State extends State<CreateAccount2> {
               SizedBox(height: 5),
               SizedBox(
                 width: 330,
-                height: 45,
+                height: 60,
                 child: TextFormField(
-                  onSaved: (title) {
-                    widget.profile.Title = title!;
+                  validator: MultiValidator([
+                    RequiredValidator(errorText: "กรุณาระบุเพศกำเนิด"),
+                    PatternValidator(r'^(Male|Female)$',
+                        errorText: "Male / Female")
+                  ]),
+                  onSaved: (gender) {
+                    widget.profile.Gender = gender!;
                   },
                   keyboardType: TextInputType.text,
-                  maxLength: 25,
+                  maxLength: 8,
                   decoration: InputDecoration(
                     counterText: '',
-                    hintText: 'นาย',
+                    hintText: 'Female',
                     fillColor: Colors.grey[300],
                     filled: true,
                     labelStyle: TextStyle(color: Colors.black),
@@ -137,15 +141,18 @@ class _CreateAccount2State extends State<CreateAccount2> {
               SizedBox(height: 5),
               SizedBox(
                 width: 330,
-                height: 45,
+                height: 60,
                 child: TextFormField(
+                  validator: MultiValidator([
+                    RequiredValidator(errorText: "กรุณาระบุชื่อจริง"),
+                  ]),
                   onSaved: (fname) {
                     widget.profile.Firstname = fname!;
                   },
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
                     counterText: '',
-                    hintText: 'เอเมอร์สัน',
+                    hintText: 'Emerson',
                     fillColor: Colors.grey[300],
                     filled: true,
                     labelStyle: TextStyle(color: Colors.black),
@@ -183,15 +190,18 @@ class _CreateAccount2State extends State<CreateAccount2> {
               SizedBox(height: 5),
               SizedBox(
                 width: 330,
-                height: 45,
+                height: 60,
                 child: TextFormField(
+                  validator: MultiValidator([
+                    RequiredValidator(errorText: "กรุณาระบุนามสกุล"),
+                  ]),
                   onSaved: (lname) {
                     widget.profile.Surname = lname!;
                   },
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
                     counterText: '',
-                    hintText: 'คอร์สการ์ด',
+                    hintText: 'Korsgaard',
                     fillColor: Colors.grey[300],
                     filled: true,
                     labelStyle: TextStyle(color: Colors.black),
@@ -229,8 +239,13 @@ class _CreateAccount2State extends State<CreateAccount2> {
               SizedBox(height: 5),
               SizedBox(
                 width: 330,
-                height: 45,
+                height: 60,
                 child: TextFormField(
+                  validator: MultiValidator([
+                    RequiredValidator(errorText: "กรุณาระบุ วัน/เดือน/ปีเกิด"),
+                    DateValidator('dd-MM-yyyy',
+                        errorText: "กรุณาใส่ วัน/เดือน/ปีเกิด ตามลำดับ"),
+                  ]),
                   onSaved: (dob) {
                     widget.profile.DoB = dob!;
                   },
@@ -240,7 +255,7 @@ class _CreateAccount2State extends State<CreateAccount2> {
                       Icons.calendar_month_rounded,
                       color: Color.fromARGB(255, 45, 71, 55),
                     ),
-                    hintText: '1/2/1999',
+                    hintText: '01/02/1999',
                     fillColor: Colors.grey[300],
                     filled: true,
                     labelStyle: TextStyle(color: Colors.black),
@@ -260,12 +275,14 @@ class _CreateAccount2State extends State<CreateAccount2> {
               SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  formkey.currentState?.save();
-                  print(
-                      "email = ${widget.profile.CitizenID} password = ${widget.profile.Password}, PhoneNO = ${widget.profile.Phonenumber}, Passport = ${widget.profile.PassportNumber}");
-                  print(
-                      "title = ${widget.profile.Title} fname  = ${widget.profile.Firstname} lname = ${widget.profile.Surname} dob = ${widget.profile.DoB}");
-                  formkey.currentState?.reset();
+                  if (formkey.currentState!.validate()) {
+                    formkey.currentState?.save();
+                    print(
+                        "email = ${widget.profile.CitizenID} password = ${widget.profile.Password}, PhoneNO = ${widget.profile.Phonenumber}, Passport = ${widget.profile.PassportNumber}");
+                    print(
+                        "gender = ${widget.profile.Gender} fname  = ${widget.profile.Firstname} lname = ${widget.profile.Surname} dob = ${widget.profile.DoB}");
+                    formkey.currentState?.reset();
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
@@ -286,16 +303,16 @@ class _CreateAccount2State extends State<CreateAccount2> {
         ));
   }
 
-  Future<void> _selectDate() async {
-    DateTime? pickeddate = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(1950),
-        lastDate: DateTime(2024));
-    if (pickeddate != null) {
-      setState(() {
-        _date.text = DateFormat('dd-MM-yyyy').format(pickeddate);
-      });
-    }
-  }
+  // Future<void> _selectDate() async {
+  //   DateTime? pickeddate = await showDatePicker(
+  //       context: context,
+  //       initialDate: DateTime.now(),
+  //       firstDate: DateTime(1950),
+  //       lastDate: DateTime(2024));
+  //   if (pickeddate != null) {
+  //     setState(() {
+  //       _date.text = DateFormat('dd-MM-yyyy').format(pickeddate);
+  //     });
+  //   }
+  // }
 }
