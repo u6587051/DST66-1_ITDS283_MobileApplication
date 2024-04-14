@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -381,7 +382,7 @@ class _CreateAccount1State extends State<CreateAccount1> {
                             if (formkey.currentState!.validate()) {
                               formkey.currentState?.save();
                               print(
-                                  "email = ${profile.CitizenID} password = ${profile.Password}, PhoneNO = ${profile.Phonenumber}, Passport = ${profile.PassportNumber}");
+                                  "email = ${profile.Email} password = ${profile.Password}, PhoneNO = ${profile.Phonenumber}, Passport = ${profile.PassportNumber}, CitizenID = ${profile.CitizenID}");
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
