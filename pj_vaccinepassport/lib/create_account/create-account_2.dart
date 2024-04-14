@@ -326,12 +326,15 @@ class _CreateAccount2State extends State<CreateAccount2> {
                               await FirebaseAuth.instance
                                   .createUserWithEmailAndPassword(
                                       email: widget.profile.Email,
-                                      password: widget.profile.Password);
-                              formkey.currentState?.reset();
-                              Navigator.of(context)..pop()..pop();
+                                      password: widget.profile.Password)
+                                  .then((value) {
+                                formkey.currentState?.reset();
+                                Navigator.of(context)
+                                  ..pop()
+                                  ..pop();
+                              });
                             } on FirebaseAuthException catch (e) {
                               print(e.message);
-
                             }
                           }
                         },
