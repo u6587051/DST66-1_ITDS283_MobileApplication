@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:table_calendar/table_calendar.dart';
 
-class calendar extends StatelessWidget {
-  const calendar({super.key});
+class Calendar extends StatelessWidget {
+  const Calendar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,3 +60,4 @@ class calendar extends StatelessWidget {
     );
   }
 }
+
