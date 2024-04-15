@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,7 +7,9 @@ import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:intl/intl.dart';
 import 'package:pj_vaccinepassport/common_pages/login-page.dart';
+import 'package:pj_vaccinepassport/firebase_options.dart';
 import 'package:pj_vaccinepassport/model/Profile.dart';
+
 
 class CreateAccount2 extends StatefulWidget {
   final Profile profile;
@@ -19,7 +22,9 @@ class CreateAccount2 extends StatefulWidget {
 
 class _CreateAccount2State extends State<CreateAccount2> {
   final formkey = GlobalKey<FormState>();
-  final Future<FirebaseApp> firebase = Firebase.initializeApp();
+  final Future<FirebaseApp> firebase = Firebase.initializeApp(
+     options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   TextEditingController datectl = TextEditingController();
 
@@ -327,7 +332,29 @@ class _CreateAccount2State extends State<CreateAccount2> {
                               await FirebaseAuth.instance
                                   .createUserWithEmailAndPassword(
                                       email: widget.profile.Email,
-                                      password: widget.profile.Password)
+                                      password: widget.profile
+                                          .Password); // สร้าง authentication บน firebase
+                              await FirebaseFirestore.instance
+                                  .collection('users')
+                                  .add({
+                                'citizenid': widget.profile.CitizenID,
+                                'passportNO': widget.profile.PassportNumber,
+                                'phoneNO': widget.profile.Phonenumber,
+                                'email': widget.profile.Email,
+                                'gender': widget.profile.Gender,
+                                'firstname': widget.profile.Firstname,
+                                'surname': widget.profile.Surname,
+                                'dob': widget.profile.DoB,
+                              })
+                                  // addUserDetails(
+                                  //         widget.profile.CitizenID,
+                                  //         widget.profile.PassportNumber,
+                                  //         widget.profile.Phonenumber,
+                                  //         widget.profile.Email,
+                                  //         widget.profile.Gender,
+                                  //         widget.profile.Firstname,
+                                  //         widget.profile.Surname,
+                                  //         widget.profile.DoB) // เพิ่มข้อมูลส่วนตัวเข้า users บน firebase
                                   .then((value) {
                                 formkey.currentState?.reset();
                                 Navigator.of(context)
@@ -352,8 +379,7 @@ class _CreateAccount2State extends State<CreateAccount2> {
                                         Icons.assignment_late_outlined,
                                         size: 50,
                                       )),
-                                      content: Text(
-                                          "แจ้งเตือน\n\n${message}"),
+                                      content: Text("แจ้งเตือน\n\n${message}"),
                                       actions: [
                                         IconButton(
                                           iconSize: 50,

@@ -47,13 +47,84 @@ class Antibody extends StatelessWidget {
           ],
         ),
       ),
-      body: Container(
-        child: Column(
-          children: [
-            Row(
-              children: [Text('Hello')],
-            )
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          child: ListView(
+            itemExtent: 100,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0, 0.70, 0.80],
+                      colors: [
+                        Color.fromARGB(255, 133, 161, 130),
+                        Color.fromARGB(255, 124, 150, 112),
+                        Color.fromARGB(255, 176, 173, 140),
+                      ],
+                    ),
+                  ),
+                  child: ListTile(
+                    title: Text(
+                      "Hepatitis A Virus",
+                      style: TextStyle(color: Colors.white, fontSize: 24,fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Row(
+                      children: [
+                        Text(
+                          "Antigen : ",
+                          style: TextStyle(color: Colors.white, fontSize: 22),
+                        ),
+                        Text(
+                          "Negative",
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 41, 65, 18),
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,)
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0, 0.70, 0.80],
+                      colors: [
+                        Color.fromARGB(255, 133, 161, 130),
+                        Color.fromARGB(255, 124, 150, 112),
+                        Color.fromARGB(255, 176, 173, 140),
+                      ],
+                    ),
+                  ),
+                  child: ListTile(
+                    title: Text("Hepatitis B Virus",
+                        style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
+                    subtitle: Row(
+                      children: [
+                        Text("Antigen : ",
+                            style: TextStyle(color: Colors.white, fontSize: 22)),
+                        Text("Positive",
+                            style:
+                                TextStyle(color: Colors.red[800], fontSize: 22, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
