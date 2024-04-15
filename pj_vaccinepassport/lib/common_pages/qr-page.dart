@@ -12,7 +12,6 @@ class QRinfo extends StatefulWidget {
 
 class _QRinfoState extends State<QRinfo> {
   final auth = FirebaseAuth.instance;
-  final userEmail = FirebaseAuth.instance.currentUser?.email;
 
   @override
   Widget build(BuildContext context) {
