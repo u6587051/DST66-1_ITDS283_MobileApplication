@@ -76,6 +76,11 @@ class _QRinfoState extends State<QRinfo> {
                     shrinkWrap: true,
                     itemBuilder: (context, i) {
                       var data = snapshot.data!.docs[i];
+                      var _citizenid = data['citizenid'].replaceAllMapped(
+                          RegExp(r'(\d{1})(\d{4})(\d{5})(\d{2})(\d{1})'),
+                          (Match match) =>
+                              '${match[1]}-${match[2]}-${match[3]}-${match[4]}-${match[5]}'); //เปลี่ยน format บัตรประชาชนใช้ regexpr
+                      String genderThai = data['gender'] == 'Male' ? 'ชาย' : 'หญิง';
                       return Stack(children: [
                         Container(
                           decoration: BoxDecoration(
@@ -99,13 +104,12 @@ class _QRinfoState extends State<QRinfo> {
                                   gradient: LinearGradient(
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight,
-                                    stops: [0, 0.45, 0.75, 0.98, 0.99],
+                                    stops: [0, 0.45, 0.75, 0.98],
                                     colors: [
                                       Color.fromARGB(255, 71, 67, 68),
                                       Color.fromARGB(190, 71, 67, 68),
                                       Color.fromARGB(255, 173, 163, 166),
                                       Color.fromARGB(255, 238, 230, 222),
-                                      Color.fromARGB(255, 255, 255, 255),
                                     ],
                                   ),
                                   borderRadius:
@@ -117,7 +121,7 @@ class _QRinfoState extends State<QRinfo> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "${data['email']}",
+                                        "${data['firstname']} ${data['surname']}",
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 32,
@@ -125,17 +129,20 @@ class _QRinfoState extends State<QRinfo> {
                                       ),
                                     ],
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "Emerson Korsgaard",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 34),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "วัน/เดือน/ปีเกิด: ${data['dob']}\nเพศ: ${genderThai}",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                   SizedBox(height: 8),
                                   Row(
@@ -170,7 +177,7 @@ class _QRinfoState extends State<QRinfo> {
                                       child: Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             12, 4, 0, 4),
-                                        child: Text("1 2345 678",
+                                        child: Text("${_citizenid}",
                                             style: TextStyle(
                                                 fontSize: 18,
                                                 color: Colors.black)),
@@ -209,7 +216,7 @@ class _QRinfoState extends State<QRinfo> {
                                       child: Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             12, 4, 0, 4),
-                                        child: Text("B9999999",
+                                        child: Text("${data['passportNO']}",
                                             style: TextStyle(
                                                 fontSize: 18,
                                                 color: Colors.black)),
@@ -250,7 +257,7 @@ class _QRinfoState extends State<QRinfo> {
                                           color: Colors.white,
                                           fontSize: 16,
                                           fontFamily: 'Kanit',
-                                          fontWeight: FontWeight.w400,
+                                          fontWeight: FontWeight.bold,
                                           height: 0,
                                         ),
                                       )
@@ -273,7 +280,7 @@ class _QRinfoState extends State<QRinfo> {
                         )
                       ]);
                     });
-              }else{
+              } else {
                 return Center(child: Text("No widget"));
               }
             }));
