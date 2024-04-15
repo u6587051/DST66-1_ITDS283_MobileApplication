@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:pj_vaccinepassport/common_pages/login-page.dart';
+import 'package:pj_vaccinepassport/common_pages/qr-page.dart';
 import 'package:pj_vaccinepassport/feature_page/antibody/antibody.dart';
 import 'package:pj_vaccinepassport/feature_page/map/healthlocation.dart';
 
@@ -26,6 +27,7 @@ int _activePage = 0;
 
 class _HomePageState extends State<HomePage> {
   final auth = FirebaseAuth.instance;
+
 
   @override
   Widget build(BuildContext context) {
@@ -365,7 +367,9 @@ class _HomePageState extends State<HomePage> {
                       icon: Icon(Icons.home),
                       color: Colors.white,
                       iconSize: 50,
-                      onPressed: () {},
+                      onPressed: () {
+                        print(auth.currentUser?.email);
+                      },
                     ),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 10),
@@ -381,7 +385,11 @@ class _HomePageState extends State<HomePage> {
                           icon: Icon(Icons.qr_code),
                           color: Colors.white,
                           iconSize: 50,
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context){
+                              return QRinfo();
+                            }));
+                          },
                         ),
                       ),
                     ),
