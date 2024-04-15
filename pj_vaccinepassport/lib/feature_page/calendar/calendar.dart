@@ -1,63 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class Calendar extends StatelessWidget {
-  const Calendar({super.key});
+class Calendar extends StatefulWidget {
+  const Calendar({Key? key}) : super(key: key);
+
+  @override
+  State<Calendar> createState() => _CalendarState();
+}
+
+class _CalendarState extends State<Calendar> {
+  DateTime today = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60),
-        child: Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  stops: [0, 1],
-                  colors: [
-                    Color.fromARGB(255, 45, 71, 55),
-                    Color.fromARGB(255, 124, 150, 112),
-                  ],
-                ),
-              ),
-            ),
-            AppBar(
-              backgroundColor: Colors.transparent, // Make app bar transparent
-              elevation: 0, // Remove app bar shadow
-              leading: IconButton(
-                icon: Icon(
-                  Icons.arrow_back_ios_new,
-                  color: Colors.white,
-                ),
-                onPressed: () {},
-              ),
-              title: Padding(
-                padding: const EdgeInsets.only(left: 80),
-                child: Text(
-                  "Antibody",
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-      body: Container(
-        child: Column(
-          children: [
-            Row(
-              children: [Text('Hello')],
-            )
-          ],
-        ),
-      ),
+      appBar: AppBar(title: Text('ปฎิทิน')),
+      body: content(),
+    );
+  }
+
+  Widget content() {
+    return Column(
+      children: [
+        Text('123'),
+        Container(
+          child: TableCalendar(
+            focusedDay: today,
+            firstDay: DateTime.utc(2002, 10, 16),
+            lastDay: DateTime.utc(2030, 3, 14),
+          ),
+        )
+      ],
     );
   }
 }
-
