@@ -6,6 +6,7 @@ import 'package:pj_vaccinepassport/common_pages/login-page.dart';
 import 'package:pj_vaccinepassport/common_pages/qr-page.dart';
 import 'package:pj_vaccinepassport/feature_page/antibody/antibody.dart';
 import 'package:pj_vaccinepassport/feature_page/map/healthlocation.dart';
+import 'package:pj_vaccinepassport/feature_page/vaccine_history/vaccine_history.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key});
@@ -233,7 +234,9 @@ class _HomePageState extends State<HomePage> {
                     size: 80,
                   ),
                   onPressed: () {
-                    // Add your notification action here
+                    Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return Vaccine_history();
+                    }));
                   },
                 ),
               ),
