@@ -63,126 +63,65 @@ class _AntibodyState extends State<Antibody> {
                 .collection('antibody')
                 .where("email", isEqualTo: auth.currentUser!.email)
                 .snapshots(),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting)
                 return Center(
                   child: CircularProgressIndicator(),
                 );
-              else if (snapshot.hasError) {
-                return Center(
-                  child: Text('Error: ${snapshot.error}'),
-                );
-              } else if (!snapshot.hasData || snapshot.data!.docs == null) {
-                return Center(
-                  child: Text('No data available'),
-                );
-              } else if (snapshot.hasData) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    child: ListView.builder(
-                        itemCount: snapshot.data!.docs.length,
-                        shrinkWrap: true,
-                        itemExtent: 100,
-                        itemBuilder: (context, i) {
-                          var data = snapshot.data!.docs[i];
-                          var _antigen = data['antigen'] == true
-                              ? Text(
-                                  'Positive',
+              else if (snapshot.hasData) {
+                var docs = snapshot.data!.docs;
+                return ListView.builder(
+                    itemCount: docs.length,
+                    itemBuilder: (context, index) {
+                      final isPositive = docs[index]['antigen']
+                          as bool; // Cast 'antigen' to bool
+                      return Padding(
+                        padding: const EdgeInsets.fromLTRB(10,20,10,5),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              stops: [0, 0.70, 0.80],
+                              colors: [
+                                Color.fromARGB(255, 133, 161, 130),
+                                Color.fromARGB(255, 124, 150, 112),
+                                Color.fromARGB(255, 176, 173, 140),
+                              ],
+                            ),
+                          ),
+                          child: ListTile(
+                              title: Text(docs[index]['antibody'] as String,
                                   style: TextStyle(
-                                      color: Colors.red[800],
-                                      fontWeight: FontWeight.bold),
-                                )
-                              : Text('Negative',
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 41, 65, 18),
-                                    fontWeight: FontWeight.bold,
-                                  ));
-
-                          buildListTile(data['antibody'], _antigen);
-                        }
-                        // Padding(
-                        //   padding: const EdgeInsets.only(bottom: 10),
-                        //   child: Container(
-                        //     decoration: BoxDecoration(
-                        //       borderRadius: BorderRadius.circular(20),
-                        //       gradient: LinearGradient(
-                        //         begin: Alignment.topLeft,
-                        //         end: Alignment.bottomRight,
-                        //         stops: [0, 0.70, 0.80],
-                        //         colors: [
-                        //           Color.fromARGB(255, 133, 161, 130),
-                        //           Color.fromARGB(255, 124, 150, 112),
-                        //           Color.fromARGB(255, 176, 173, 140),
-                        //         ],
-                        //       ),
-                        //     ),
-                        //     child: ListTile(
-                        //       title: Text("Hepatitis B Virus",
-                        //           style: TextStyle(
-                        //               color: Colors.white,
-                        //               fontSize: 24,
-                        //               fontWeight: FontWeight.bold)),
-                        //       subtitle: Row(
-                        //         children: [
-                        //           Text("Antigen : ",
-                        //               style: TextStyle(
-                        //                   color: Colors.white, fontSize: 22)),
-                        //           Text("Positive",
-                        //               style: TextStyle(
-                        //                   color: Colors.red[800],
-                        //                   fontSize: 22,
-                        //                   fontWeight: FontWeight.bold)),
-                        //         ],
-                        //       ),
-                        //     ),
-                        //   ),
-                        // )
-
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold)),
+                              subtitle: Row(
+                                children: [
+                                  Text(
+                                    'Antigen: ',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 22),
+                                  ),
+                                  Text(
+                                    isPositive ? 'Positive' : 'Negative',
+                                    style: TextStyle(
+                                      color: isPositive
+                                          ? Colors.red[800]
+                                          : Color.fromARGB(255, 41, 65, 18),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 22,
+                                    ),
+                                  ),
+                                ],
+                              )),
                         ),
-                  ),
-                );
+                      );
+                    });
               } else {
                 return Center(child: Text("No widget"));
               }
             }));
-  }
-
-  Padding buildListTile(String title, _antigen) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [0, 0.70, 0.80],
-            colors: [
-              Color.fromARGB(255, 133, 161, 130),
-              Color.fromARGB(255, 124, 150, 112),
-              Color.fromARGB(255, 176, 173, 140),
-            ],
-          ),
-        ),
-        child: ListTile(
-          title: Text(
-            "${title}",
-            style: TextStyle(
-                color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          subtitle: Row(
-            children: [
-              Text(
-                "Antigen : ",
-                style: TextStyle(color: Colors.white, fontSize: 22),
-              ),
-              _antigen,
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }
