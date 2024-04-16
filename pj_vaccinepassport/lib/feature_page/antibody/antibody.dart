@@ -76,7 +76,7 @@ class _AntibodyState extends State<Antibody> {
                       final isPositive = docs[index]['antigen']
                           as bool; // Cast 'antigen' to bool
                       return Padding(
-                        padding: const EdgeInsets.fromLTRB(10,20,10,5),
+                        padding: const EdgeInsets.fromLTRB(10, 20, 10, 5),
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),

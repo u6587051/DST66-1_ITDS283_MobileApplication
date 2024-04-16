@@ -5,6 +5,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:pj_vaccinepassport/common_pages/login-page.dart';
 import 'package:pj_vaccinepassport/common_pages/qr-page.dart';
 import 'package:pj_vaccinepassport/feature_page/antibody/antibody.dart';
+import 'package:pj_vaccinepassport/feature_page/calendar/calendar.dart';
 import 'package:pj_vaccinepassport/feature_page/map/healthlocation.dart';
 import 'package:pj_vaccinepassport/feature_page/vaccine_history/vaccine_history.dart';
 
@@ -145,267 +146,271 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        child: Column(children: [
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            width: 350,
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
-                )),
-            child: CarouselSlider.builder(
-              itemCount: imagePath.length,
-              options: CarouselOptions(
-                viewportFraction: 1,
-                height: MediaQuery.of(context).size.height / 4,
-                autoPlay: true,
-                aspectRatio: 16 / 9,
-                autoPlayInterval: Duration(seconds: 3),
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    _activePage = index;
-                  });
+        child: SingleChildScrollView(
+          child: Column(children: [
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              width: 350,
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  )),
+              child: CarouselSlider.builder(
+                itemCount: imagePath.length,
+                options: CarouselOptions(
+                  viewportFraction: 1,
+                  height: MediaQuery.of(context).size.height / 4,
+                  autoPlay: true,
+                  aspectRatio: 16 / 9,
+                  autoPlayInterval: Duration(seconds: 3),
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _activePage = index;
+                    });
+                  },
+                ),
+                itemBuilder: (BuildContext context, int index, int realIndex) {
+                  return Image.asset(
+                    imagePath[index],
+                    fit: BoxFit.fill,
+                  );
                 },
               ),
-              itemBuilder: (BuildContext context, int index, int realIndex) {
-                return Image.asset(
-                  imagePath[index],
-                  fit: BoxFit.fill,
-                );
-              },
             ),
-          ),
-          // Page Indicator
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List<Widget>.generate(
-                imagePath.length,
-                (index) => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: CircleAvatar(
-                    radius: 4,
-                    backgroundColor: _activePage == index
-                        ? Colors.grey.shade700
-                        : Colors.grey.shade300,
-                  ),
-                ),
-              ),
+            // Page Indicator
+            SizedBox(
+              height: 10,
             ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              //Antibody
-              CircleAvatar(
-                backgroundColor: Color.fromARGB(255, 45, 71, 55),
-                radius: 50,
-                child: IconButton(
-                  icon: Icon(
-                    Icons.bloodtype,
-                    color: Colors.white,
-                    size: 80,
-                  ),
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context){
-                      return Antibody();
-                    }));
-                  },
-                ),
-              ),
-              // History
-              CircleAvatar(
-                backgroundColor: Color.fromARGB(255, 45, 71, 55),
-                radius: 50,
-                child: IconButton(
-                  icon: Icon(
-                    Icons.folder_copy_rounded,
-                    color: Colors.white,
-                    size: 80,
-                  ),
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context){
-                      return Vaccine_history();
-                    }));
-                  },
-                ),
-              ),
-              // Certificate
-              CircleAvatar(
-                backgroundColor: Color.fromARGB(255, 45, 71, 55),
-                radius: 50,
-                child: IconButton(
-                  icon: Icon(
-                    Icons.person,
-                    color: Colors.white,
-                    size: 80,
-                  ),
-                  onPressed: () {
-                    // Add your notification action here
-                  },
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                ' Antibody',
-                style: TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                'ประวัติ\nการฉีดวัคซีน',
-                style: TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                'ใบรับรอง',
-                style: TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              //ข้อมูลวัคซีน
-              CircleAvatar(
-                backgroundColor: Color.fromARGB(255, 45, 71, 55),
-                radius: 50,
-                child: IconButton(
-                  icon: Icon(
-                    Icons.vaccines,
-                    color: Colors.white,
-                    size: 80,
-                  ),
-                  onPressed: () {
-                    // Add your notification action here
-                  },
-                ),
-              ),
-              // ปฏิทิน
-              CircleAvatar(
-                backgroundColor: Color.fromARGB(255, 45, 71, 55),
-                radius: 50,
-                child: IconButton(
-                  icon: Icon(
-                    Icons.calendar_month,
-                    color: Colors.white,
-                    size: 80,
-                  ),
-                  onPressed: () {
-                    // Add your notification action here
-                  },
-                ),
-              ),
-              // Location
-              CircleAvatar(
-                backgroundColor: Color.fromARGB(255, 45, 71, 55),
-                radius: 50,
-                child: IconButton(
-                  icon: Icon(
-                    Icons.local_hospital,
-                    color: Colors.white,
-                    size: 80,
-                  ),
-                  onPressed: () {
-                   Navigator.push(context, MaterialPageRoute(builder: (context){
-                    return MapHealth();
-                   }));
-                  },
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                ' ข้อมูลวัคซีน',
-                style: TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                '      ปฏิทิน',
-                style: TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                '      ค้นหา\n    สถานพยาบาล',
-                style: TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(15, 70, 15, 0),
-            child: Container(
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 71, 67, 68),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
-                    )),
-                height: 80,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.home),
-                      color: Colors.white,
-                      iconSize: 50,
-                      onPressed: () {
-                        print(auth.currentUser?.email);
-                      },
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List<Widget>.generate(
+                  imagePath.length,
+                  (index) => Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: CircleAvatar(
+                      radius: 4,
+                      backgroundColor: _activePage == index
+                          ? Colors.grey.shade700
+                          : Colors.grey.shade300,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: CircleAvatar(
-                        backgroundColor: Color.fromARGB(
-                          255,
-                          147,
-                          147,
-                          147,
-                        ),
-                        radius: 60,
-                        child: IconButton(
-                          icon: Icon(Icons.qr_code),
-                          color: Colors.white,
-                          iconSize: 50,
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context){
-                              return QRinfo();
-                            }));
-                          },
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                //Antibody
+                CircleAvatar(
+                  backgroundColor: Color.fromARGB(255, 45, 71, 55),
+                  radius: 50,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.bloodtype,
+                      color: Colors.white,
+                      size: 80,
+                    ),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return Antibody();
+                      }));
+                    },
+                  ),
+                ),
+                // History
+                CircleAvatar(
+                  backgroundColor: Color.fromARGB(255, 45, 71, 55),
+                  radius: 50,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.folder_copy_rounded,
+                      color: Colors.white,
+                      size: 80,
+                    ),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return Vaccine_history();
+                      }));
+                    },
+                  ),
+                ),
+                // Certificate
+                CircleAvatar(
+                  backgroundColor: Color.fromARGB(255, 45, 71, 55),
+                  radius: 50,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.person,
+                      color: Colors.white,
+                      size: 80,
+                    ),
+                    onPressed: () {
+                      // Add your notification action here
+                    },
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  ' Antibody',
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  'ประวัติ\nการฉีดวัคซีน',
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  'ใบรับรอง',
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                //ข้อมูลวัคซีน
+                CircleAvatar(
+                  backgroundColor: Color.fromARGB(255, 45, 71, 55),
+                  radius: 50,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.vaccines,
+                      color: Colors.white,
+                      size: 80,
+                    ),
+                    onPressed: () {
+                      // Add your notification action here
+                    },
+                  ),
+                ),
+                // ปฏิทิน
+                CircleAvatar(
+                  backgroundColor: Color.fromARGB(255, 45, 71, 55),
+                  radius: 50,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.calendar_month,
+                      color: Colors.white,
+                      size: 80,
+                    ),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder:(context) {
+                        return Calendar();
+                      }, ));
+                    },
+                  ),
+                ),
+                // Location
+                CircleAvatar(
+                  backgroundColor: Color.fromARGB(255, 45, 71, 55),
+                  radius: 50,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.local_hospital,
+                      color: Colors.white,
+                      size: 80,
+                    ),
+                    onPressed: () {
+                     Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return MapHealth();
+                     }));
+                    },
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  ' ข้อมูลวัคซีน',
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  '      ปฏิทิน',
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  '      ค้นหา\n    สถานพยาบาล',
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(15, 70, 15, 0),
+              child: Container(
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 71, 67, 68),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15),
+                      )),
+                  height: 80,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.home),
+                        color: Colors.white,
+                        iconSize: 50,
+                        onPressed: () {
+                          print(auth.currentUser?.email);
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: CircleAvatar(
+                          backgroundColor: Color.fromARGB(
+                            255,
+                            147,
+                            147,
+                            147,
+                          ),
+                          radius: 60,
+                          child: IconButton(
+                            icon: Icon(Icons.qr_code),
+                            color: Colors.white,
+                            iconSize: 50,
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context){
+                                return QRinfo();
+                              }));
+                            },
+                          ),
                         ),
                       ),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.settings),
-                      color: Colors.white,
-                      iconSize: 50,
-                      onPressed: () {},
-                    ),
-                  ],
-                )),
-          ),
-        ]),
+                      IconButton(
+                        icon: Icon(Icons.settings),
+                        color: Colors.white,
+                        iconSize: 50,
+                        onPressed: () {},
+                      ),
+                    ],
+                  )),
+            ),
+          ]),
+        ),
       ),
     );
   }

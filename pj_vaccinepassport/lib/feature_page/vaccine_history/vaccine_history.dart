@@ -45,15 +45,12 @@ class _Vaccine_history extends State<Vaccine_history> {
                     Navigator.pop(context);
                   },
                 ),
-                title: Padding(
-                  padding: const EdgeInsets.only(left: 80),
-                  child: Text(
-                    "ประวัติการฉีดวัคซีน",
-                    style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
+                title: Text(
+                  "ประวัติการฉีดวัคซีน",
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
               ),
             ],
