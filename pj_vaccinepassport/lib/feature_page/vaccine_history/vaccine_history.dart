@@ -73,7 +73,7 @@ class _Vaccine_history extends State<Vaccine_history> {
                     itemBuilder: (context, index) {
                       DateTime date =
                           (docs[index]['date'] as Timestamp).toDate();
-                      String formatted = DateFormat('dd/MM/yyyy').format(date);
+                      String formatted_date = DateFormat('dd/MM/yyyy').format(date);
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(10, 20, 10, 5),
                         child: Container(
@@ -97,7 +97,7 @@ class _Vaccine_history extends State<Vaccine_history> {
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold)),
                               subtitle: Text(
-                                '${formatted}\n${docs[index]['hospital']}',
+                                '${formatted_date}\n${docs[index]['hospital']}',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 18,

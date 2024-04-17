@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -28,6 +29,7 @@ class _MapHealth extends State<MapHealth> with SingleTickerProviderStateMixin {
     // TODO: implement initState
     super.initState();
     getLocationUpdates();
+    getHealthUnit();
     _controller = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 500),
@@ -39,6 +41,34 @@ class _MapHealth extends State<MapHealth> with SingleTickerProviderStateMixin {
       parent: _controller,
       curve: Curves.easeInOut,
     ));
+  }
+
+  getHealthUnit() {
+    var healthunit = [];
+    FirebaseFirestore.instance
+        .collection('markers')
+        .get()
+        .then((querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        if (doc.data().isNotEmpty) {
+          Map<String, dynamic> data = doc.data();
+          for (int i = 0; i < doc.data().length; i++) {
+            healthunit.add(data);
+          }
+        }
+        // Access each document here using doc
+        // For example:
+        // String markerId = doc.id;
+        // Map<String, dynamic> data = doc.data();
+      });
+    }).catchError((error) {
+      // Handle error here
+      print("Error fetching markers: $error");
+    });
+  }
+
+  initMarker(healthunit){
+    
   }
 
   @override
@@ -92,7 +122,7 @@ class _MapHealth extends State<MapHealth> with SingleTickerProviderStateMixin {
           : Stack(children: [
               GoogleMap(
                 initialCameraPosition: CameraPosition(
-                  target: _pKanchana,
+                  target: _currentP!,
                   zoom: 12,
                 ),
                 markers: {
