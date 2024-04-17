@@ -56,7 +56,8 @@ class _Calendar extends State<Calendar> {
       // Update _eventsList with Firestore data
       snapshot.docs.forEach((doc) {
         DateTime date = (doc['date'] as Timestamp).toDate();
-        Event event = Event(doc['title'], doc['hospital']);
+        Event event = Event(
+            doc['title'], doc['hospital'], (doc['date'] as Timestamp).toDate());
         _eventsList.update(date, (value) => value..add(event),
             ifAbsent: () => [event]);
       });
@@ -142,6 +143,17 @@ class _Calendar extends State<Calendar> {
       return _events[day] ?? [];
     }
 
+    List<Event> _getEventsAfterCurrentDay() {
+      List<Event> eventsAfterCurrentDay = [];
+      _eventsList.forEach((date, events) {
+        if (date.isAfter(DateTime.now())) {
+          eventsAfterCurrentDay.addAll(
+              events.map((e) => e as Event)); // Cast each event to Event
+        }
+      });
+      return eventsAfterCurrentDay;
+    }
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(children: [
@@ -185,18 +197,30 @@ class _Calendar extends State<Calendar> {
             trackVisibility: true,
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: _getEventForDay(_selectedDay!).length,
+              itemCount: _getEventForDay(_selectedDay!).isEmpty
+                  ? _eventsList.length
+                  : _getEventForDay(_selectedDay!).length,
               itemBuilder: (context, index) {
-                Event event = _getEventForDay(_selectedDay!)[index];
-                DateTime eventDate = _selectedDay!; // Default to selected day
-                _eventsList.forEach((date, events) {
-                  if (events.contains(event)) {
-                    eventDate = date;
-                  }
-                });
+                DateTime eventDate =
+                    _selectedDay ?? _focusedDay; // Default to selected day
+                Event event;
+                if (_selectedDay != null &&
+                    _getEventForDay(_selectedDay!).isNotEmpty) {
+                  event = _getEventForDay(_selectedDay!)[index];
+                  _eventsList.forEach((date, events) {
+                    if (events.contains(event)) {
+                      eventDate = date;
+                    }
+                  });
+                } else {
+                  event = _eventsList.values
+                      .expand((events) => events)
+                      .toList()[index];
+                }
 
                 String formatted_date =
-                    DateFormat('dd/MM/yyyy').format(eventDate);
+                    DateFormat('dd/MM/yyyy').format(event.date);
+
                 return Padding(
                   padding: const EdgeInsets.fromLTRB(10, 20, 10, 5),
                   child: Container(
