@@ -64,10 +64,65 @@ class _MapHealth extends State<MapHealth> with SingleTickerProviderStateMixin {
             position: LatLng(lat, lng),
             infoWindow: InfoWindow(
               title: name,
-              snippet: '$phone\n$openingHours',
+              snippet: '$openingHours',
             ),
             icon: BitmapDescriptor.defaultMarkerWithHue(
                 BitmapDescriptor.hueYellow),
+            onTap: () {
+              showModalBottomSheet<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Container(
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            stops: [0, 0.45, 0.75, 0.98],
+                            colors: [
+                              Color.fromARGB(255, 45, 71, 55),
+                              Color.fromARGB(255, 124, 150, 112),
+                              Color.fromARGB(255, 176, 173, 140),
+                              Color.fromARGB(255, 238, 230, 222),
+                            ],
+                          ),
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(15),
+                            topRight: Radius.circular(15),
+                          )),
+                      height: 80,
+                      width: 300,
+                      child: Padding(
+                        padding: const EdgeInsets.all(4),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${name}",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.white),
+                              ),
+                              Text(
+                                "${phone}",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.white),
+                              ),
+                              Text(
+                                "${openingHours}",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.white),
+                              ),
+                            ]),
+                      ),
+                    );
+                  });
+            },
           );
           setState(() {
             markers.add(marker);
@@ -146,61 +201,6 @@ class _MapHealth extends State<MapHealth> with SingleTickerProviderStateMixin {
                 },
                 zoomGesturesEnabled: true,
               ),
-              if (_showExpanded)
-                Expanded(
-                  child: Align(
-                    alignment: FractionalOffset.bottomCenter,
-                    child: Container(
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            stops: [0, 0.45, 0.75, 0.98],
-                            colors: [
-                              Color.fromARGB(255, 45, 71, 55),
-                              Color.fromARGB(255, 124, 150, 112),
-                              Color.fromARGB(255, 176, 173, 140),
-                              Color.fromARGB(255, 238, 230, 222),
-                            ],
-                          ),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(15),
-                            topRight: Radius.circular(15),
-                          )),
-                      height: 80,
-                      width: 300,
-                      child: Padding(
-                        padding: const EdgeInsets.all(4),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "ศูนย์การแพทย์กาญจนาภิเษก",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    color: Colors.white),
-                              ),
-                              Text(
-                                "02 849 6600",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    color: Colors.white),
-                              ),
-                              Text(
-                                "เปิด 24 ชม.",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    color: Colors.white),
-                              ),
-                            ]),
-                      ),
-                    ),
-                  ),
-                ),
             ]),
     );
   }
