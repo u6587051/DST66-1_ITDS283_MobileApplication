@@ -10,7 +10,6 @@ import 'package:pj_vaccinepassport/common_pages/login-page.dart';
 import 'package:pj_vaccinepassport/firebase_options.dart';
 import 'package:pj_vaccinepassport/model/Profile.dart';
 
-
 class CreateAccount2 extends StatefulWidget {
   final Profile profile;
 
@@ -23,8 +22,11 @@ class CreateAccount2 extends StatefulWidget {
 class _CreateAccount2State extends State<CreateAccount2> {
   final formkey = GlobalKey<FormState>();
   final Future<FirebaseApp> firebase = Firebase.initializeApp(
-     options: DefaultFirebaseOptions.currentPlatform,
+    options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  List<String> genderOptions = ['Male', 'Female'];
+  String? selectedGender;
 
   TextEditingController datectl = TextEditingController();
 
@@ -116,19 +118,27 @@ class _CreateAccount2State extends State<CreateAccount2> {
                       SizedBox(
                         width: 330,
                         height: 60,
-                        child: TextFormField(
-                          validator: MultiValidator([
-                            RequiredValidator(errorText: "กรุณาระบุเพศกำเนิด"),
-                            PatternValidator(r'^(Male|Female)$',
-                                errorText: "Male / Female")
-                          ]),
-                          onSaved: (gender) {
-                            widget.profile.Gender = gender!;
+                        child: DropdownButtonFormField<String>(
+                          value: selectedGender,
+                          validator: (value) {
+                            if (value == null) {
+                              return 'โปรดระบุเพศ';
+                            }
+                            return null;
                           },
-                          keyboardType: TextInputType.text,
-                          maxLength: 8,
+                          onChanged: (String? value) {
+                            setState(() {
+                              selectedGender = value;
+                              widget.profile.Gender = value!;
+                            });
+                          },
+                          items: genderOptions.map((String gender) {
+                            return DropdownMenuItem<String>(
+                              value: gender,
+                              child: Text(gender),
+                            );
+                          }).toList(),
                           decoration: InputDecoration(
-                            counterText: '',
                             hintText: 'Female',
                             fillColor: Colors.grey[300],
                             filled: true,
@@ -143,7 +153,6 @@ class _CreateAccount2State extends State<CreateAccount2> {
                                 borderRadius: BorderRadius.circular(20.0)),
                             contentPadding: EdgeInsets.all(16),
                           ),
-                          style: TextStyle(color: Colors.black),
                         ),
                       ),
                       Row(
