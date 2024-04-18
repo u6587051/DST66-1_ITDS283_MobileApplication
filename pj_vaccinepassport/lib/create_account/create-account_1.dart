@@ -184,15 +184,15 @@ class _CreateAccount1State extends State<CreateAccount1> {
                             validator: MultiValidator([
                               RequiredValidator(
                                   errorText:
-                                      "กรุณาป้อนหมายเลขพาสปอร์ต 6-7 หลัก"),
+                                      "กรุณาป้อนหมายเลขพาสปอร์ต 8 หลัก"),
                               MinLengthValidator(6,
                                   errorText:
-                                      "กรุณาป้อนหมายเลขพาสปอร์ตขั้นต่ำ 6 หลัก")
+                                      "กรุณาป้อนหมายเลขพาสปอร์ตขั้นต่ำ 8 หลัก")
                             ]),
                             onSaved: (passportnumber) {
                               profile.PassportNumber = passportnumber!;
                             },
-                            maxLength: 7,
+                            maxLength: 8,
                             decoration: InputDecoration(
                               counterText: '',
                               hintText: 'AA123456',
