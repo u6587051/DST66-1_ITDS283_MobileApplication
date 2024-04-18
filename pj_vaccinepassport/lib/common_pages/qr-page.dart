@@ -263,7 +263,8 @@ class _QRinfoState extends State<QRinfo> {
                                         ),
                                       )
                                     ],
-                                  )
+                                  ),
+                                  SizedBox(height: 30,)
                                 ]),
                               ),
                             ),
