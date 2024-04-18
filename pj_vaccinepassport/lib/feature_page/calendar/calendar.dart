@@ -161,8 +161,14 @@ class _Calendar extends State<Calendar> {
           child: TableCalendar(
             locale: "en_US",
             rowHeight: 43,
-            headerStyle:
-                HeaderStyle(formatButtonVisible: false, titleCentered: true),
+            headerStyle: HeaderStyle(
+                formatButtonVisible: false,
+                titleCentered: true,
+                titleTextStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  color: Color.fromARGB(255, 124, 150, 112),
+                )),
             availableGestures: AvailableGestures.all,
             selectedDayPredicate: (day) => isSameDay(day, _focusedDay),
             focusedDay: _focusedDay,

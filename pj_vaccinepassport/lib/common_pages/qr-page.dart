@@ -79,7 +79,8 @@ class _QRinfoState extends State<QRinfo> {
                           RegExp(r'(\d{1})(\d{4})(\d{5})(\d{2})(\d{1})'),
                           (Match match) =>
                               '${match[1]}-${match[2]}-${match[3]}-${match[4]}-${match[5]}'); //เปลี่ยน format บัตรประชาชนใช้ regexpr
-                      String genderThai = data['gender'] == 'Male' ? 'ชาย' : 'หญิง';
+                      String genderThai =
+                          data['gender'] == 'Male' ? 'ชาย' : 'หญิง';
                       return Stack(children: [
                         Container(
                           decoration: BoxDecoration(
@@ -131,7 +132,8 @@ class _QRinfoState extends State<QRinfo> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 34),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         Text(
                                           "วัน/เดือน/ปีเกิด: ${data['dob']}\nเพศ: ${genderThai}",
@@ -272,8 +274,8 @@ class _QRinfoState extends State<QRinfo> {
                           children: [
                             CircleAvatar(
                               radius: 60,
-                              backgroundImage:
-                                  AssetImage('assets/images/man_test.jpg'),
+                              backgroundImage: NetworkImage(
+                                  'https://static.vecteezy.com/system/resources/previews/009/292/244/original/default-avatar-icon-of-social-media-user-vector.jpg'),
                             ),
                           ],
                         )

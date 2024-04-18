@@ -23,6 +23,7 @@ class _MapHealth extends State<MapHealth> with SingleTickerProviderStateMixin {
 
   LatLng? _currentP = null;
   bool _showExpanded = false;
+  List<Marker> markers = [];
 
   @override
   void initState() {
@@ -43,32 +44,40 @@ class _MapHealth extends State<MapHealth> with SingleTickerProviderStateMixin {
     ));
   }
 
-  getHealthUnit() {
-    var healthunit = [];
+  void getHealthUnit() {
     FirebaseFirestore.instance
         .collection('markers')
         .get()
         .then((querySnapshot) {
       querySnapshot.docs.forEach((doc) {
-        if (doc.data().isNotEmpty) {
-          Map<String, dynamic> data = doc.data();
-          for (int i = 0; i < doc.data().length; i++) {
-            healthunit.add(data);
-          }
+        if (doc.exists) {
+          double lat = doc.data()['geo'].latitude;
+          double lng = doc.data()['geo'].longitude;
+          String name = doc.data()['healthcareunit'];
+          String phone = doc.data()['tel'];
+          String openingHours = doc.data()['open'];
+          print(lat);
+          print(lng);
+          print('${name} + ${phone} + ${openingHours}');
+          Marker marker = Marker(
+            markerId: MarkerId(name),
+            position: LatLng(lat, lng),
+            infoWindow: InfoWindow(
+              title: name,
+              snippet: '$phone\n$openingHours',
+            ),
+            icon: BitmapDescriptor.defaultMarkerWithHue(
+                BitmapDescriptor.hueYellow),
+          );
+          setState(() {
+            markers.add(marker);
+            print(markers);
+          });
         }
-        // Access each document here using doc
-        // For example:
-        // String markerId = doc.id;
-        // Map<String, dynamic> data = doc.data();
       });
     }).catchError((error) {
-      // Handle error here
       print("Error fetching markers: $error");
     });
-  }
-
-  initMarker(healthunit){
-    
   }
 
   @override
@@ -129,16 +138,11 @@ class _MapHealth extends State<MapHealth> with SingleTickerProviderStateMixin {
                   Marker(
                       markerId: MarkerId("_currentLocation"),
                       icon: BitmapDescriptor.defaultMarker,
+                      infoWindow: InfoWindow(
+                        title: 'ตำแหน่งของฉัน',
+                      ),
                       position: _currentP!),
-                  Marker(
-                    markerId: MarkerId("_Kanchana"),
-                    icon: BitmapDescriptor.defaultMarkerWithHue(
-                        BitmapDescriptor.hueYellow),
-                    position: _pKanchana,
-                    onTap: () {
-                      _showExpanded = !_showExpanded;
-                    },
-                  ),
+                  for (Marker marker in markers) marker,
                 },
                 zoomGesturesEnabled: true,
               ),

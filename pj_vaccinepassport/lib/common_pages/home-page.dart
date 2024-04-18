@@ -30,7 +30,6 @@ int _activePage = 0;
 class _HomePageState extends State<HomePage> {
   final auth = FirebaseAuth.instance;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +59,8 @@ class _HomePageState extends State<HomePage> {
                   fit: BoxFit.cover,
                   child: CircleAvatar(
                     radius: 30,
-                    backgroundImage: AssetImage('assets/images/man_test.jpg'),
+                    backgroundImage: NetworkImage(
+                        'https://static.vecteezy.com/system/resources/previews/009/292/244/original/default-avatar-icon-of-social-media-user-vector.jpg'),
                     // Your profile picture
                   ),
                 ),
@@ -111,7 +111,8 @@ class _HomePageState extends State<HomePage> {
                                 iconSize: 50,
                                 onPressed: () {
                                   auth.signOut().then((value) {
-                                    Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) {
+                                    Navigator.pushReplacement(context,
+                                        MaterialPageRoute(builder: ((context) {
                                       return LogInPage();
                                     })));
                                   });
@@ -219,7 +220,8 @@ class _HomePageState extends State<HomePage> {
                       size: 80,
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
                         return Antibody();
                       }));
                     },
@@ -236,7 +238,8 @@ class _HomePageState extends State<HomePage> {
                       size: 80,
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
                         return Vaccine_history();
                       }));
                     },
@@ -311,9 +314,11 @@ class _HomePageState extends State<HomePage> {
                       size: 80,
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder:(context) {
-                        return Calendar();
-                      }, ));
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return Calendar();
+                        },
+                      ));
                     },
                   ),
                 ),
@@ -328,9 +333,10 @@ class _HomePageState extends State<HomePage> {
                       size: 80,
                     ),
                     onPressed: () {
-                     Navigator.push(context, MaterialPageRoute(builder: (context){
-                      return MapHealth();
-                     }));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return MapHealth();
+                      }));
                     },
                   ),
                 ),
@@ -393,7 +399,8 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.white,
                             iconSize: 50,
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context){
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
                                 return QRinfo();
                               }));
                             },
