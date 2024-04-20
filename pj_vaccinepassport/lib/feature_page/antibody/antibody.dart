@@ -96,21 +96,24 @@ class _AntibodyState extends State<Antibody> {
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 24,
-                                      fontWeight: FontWeight.bold)),
+                                      fontWeight: FontWeight.w600)),
                               subtitle: Row(
                                 children: [
                                   Text(
                                     'Antigen: ',
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 22),
+                                        color: Colors.white, fontSize: 22,fontWeight: FontWeight.w400,),
                                   ),
                                   Text(
                                     isPositive ? 'Positive' : 'Negative',
                                     style: TextStyle(
                                       color: isPositive
                                           ? Colors.red[800]
-                                          : Color.fromARGB(255, 41, 65, 18),
-                                      fontWeight: FontWeight.bold,
+                                          : Color(0xFF294112),
+                                      fontStyle: FontStyle.italic,
+                                      fontWeight: FontWeight.w600,
+                                      height: 0.03,
+                                      letterSpacing: 0.25,
                                       fontSize: 22,
                                     ),
                                   ),

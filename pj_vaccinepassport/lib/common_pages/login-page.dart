@@ -82,8 +82,7 @@ class _LogInPageState extends State<LogInPage> {
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 40,
-                                    fontFamily: 'Kanit',
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 Text(
@@ -91,8 +90,7 @@ class _LogInPageState extends State<LogInPage> {
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 40,
-                                    fontFamily: 'Kanit',
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ],

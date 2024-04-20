@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pj_vaccinepassport/common_pages/home-page.dart';
 import 'package:pj_vaccinepassport/common_pages/login-page.dart';
 import 'package:pj_vaccinepassport/common_pages/qr-page.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Vaccine Passport',
+        theme: ThemeData(textTheme: GoogleFonts.kanitTextTheme(),),
         debugShowCheckedModeBanner: false,
         home: LogInPage());
   }

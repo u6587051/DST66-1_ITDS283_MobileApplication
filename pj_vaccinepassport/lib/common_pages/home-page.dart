@@ -267,17 +267,17 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Text(
                   ' Antibody',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
                   textAlign: TextAlign.center,
                 ),
                 Text(
                   'ประวัติ\nการฉีดวัคซีน',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
                   textAlign: TextAlign.center,
                 ),
                 Text(
                   'ใบรับรอง',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -346,24 +346,25 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  ' ข้อมูลวัคซีน',
-                  style: TextStyle(color: Colors.white),
+                  '    ข้อมูลวัคซีน',
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+                  textAlign: TextAlign.center,
+                  
+                ),
+                Text(
+                  '         ปฏิทิน',
+                  style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600),
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  '      ปฏิทิน',
-                  style: TextStyle(color: Colors.white),
-                  textAlign: TextAlign.center,
-                ),
-                Text(
-                  '      ค้นหา\n    สถานพยาบาล',
-                  style: TextStyle(color: Colors.white),
+                  '         ค้นหา\n        สถานพยาบาล',
+                  style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600),
                   textAlign: TextAlign.center,
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(15, 70, 15, 0),
+              padding: const EdgeInsets.fromLTRB(15, 84, 15, 0),
               child: Container(
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
