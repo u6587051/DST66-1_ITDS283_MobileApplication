@@ -13,16 +13,11 @@ class MapHealth extends StatefulWidget {
 class _MapHealth extends State<MapHealth> with SingleTickerProviderStateMixin {
   late GoogleMapController mapController;
 
-  late Animation<Offset> _offsetAnimation;
-  late AnimationController _controller;
 
   Location _locationController = new Location();
 
-  final LatLng _pMahidol = const LatLng(13.7991639, 100.3162772);
-  final LatLng _pKanchana = const LatLng(13.786799, 100.3189151);
 
   LatLng? _currentP = null;
-  bool _showExpanded = false;
   List<Marker> markers = [];
 
   @override
@@ -31,17 +26,6 @@ class _MapHealth extends State<MapHealth> with SingleTickerProviderStateMixin {
     super.initState();
     getLocationUpdates();
     getHealthUnit();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 500),
-    );
-    _offsetAnimation = Tween<Offset>(
-      begin: Offset(0.0, 1.0),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
   }
 
   void getHealthUnit() {

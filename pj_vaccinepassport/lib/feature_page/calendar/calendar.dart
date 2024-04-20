@@ -125,7 +125,6 @@ class _Calendar extends State<Calendar> {
                   child: CircularProgressIndicator(),
                 );
               else if (snapshot.hasData) {
-                var docs = snapshot.data!.docs;
                 return content();
               } else {
                 return Center(child: Text("No widget"));
@@ -207,15 +206,13 @@ class _Calendar extends State<Calendar> {
                   ? _eventsList.length
                   : _getEventForDay(_selectedDay!).length,
               itemBuilder: (context, index) {
-                DateTime eventDate =
-                    _selectedDay ?? _focusedDay; // Default to selected day
+// Default to selected day
                 Event event;
                 if (_selectedDay != null &&
                     _getEventForDay(_selectedDay!).isNotEmpty) {
                   event = _getEventForDay(_selectedDay!)[index];
                   _eventsList.forEach((date, events) {
                     if (events.contains(event)) {
-                      eventDate = date;
                     }
                   });
                 } else {

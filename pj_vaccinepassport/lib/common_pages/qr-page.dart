@@ -65,7 +65,7 @@ class _QRinfoState extends State<QRinfo> {
                 return Center(
                   child: Text('Error: ${snapshot.error}'),
                 );
-              } else if (!snapshot.hasData || snapshot.data!.docs == null) {
+              } else if (!snapshot.hasData) {
                 return Center(
                   child: Text('No data available'),
                 );

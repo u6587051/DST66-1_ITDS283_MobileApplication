@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:intl/intl.dart';
-import 'package:pj_vaccinepassport/common_pages/login-page.dart';
 import 'package:pj_vaccinepassport/firebase_options.dart';
 import 'package:pj_vaccinepassport/model/Profile.dart';
 
@@ -288,13 +287,11 @@ class _CreateAccount2State extends State<CreateAccount2> {
                                 firstDate: DateTime(1900),
                                 lastDate: DateTime(2100));
                             datectl.text = date!.toIso8601String();
-                            if (date != null) {
-                              setState(() {
-                                datectl.text =
-                                    DateFormat('dd-MM-yyyy').format(date!);
-                              });
-                            }
-                          },
+                            setState(() {
+                              datectl.text =
+                                  DateFormat('dd-MM-yyyy').format(date!);
+                            });
+                                                    },
                           validator: MultiValidator([
                             RequiredValidator(
                                 errorText: "กรุณาระบุ วัน/เดือน/ปีเกิด"),

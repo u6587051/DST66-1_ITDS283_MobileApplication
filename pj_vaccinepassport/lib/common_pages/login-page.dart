@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pj_vaccinepassport/common_pages/home-page.dart';
 import 'package:pj_vaccinepassport/create_account/create-account_1.dart';
 import 'package:pj_vaccinepassport/model/profile.dart';
@@ -228,7 +227,6 @@ class _LogInPageState extends State<LogInPage> {
                                   }));
                                 });
                               } on FirebaseAuthException catch (e) {
-                                String? message;
                                 print(e.message);
                                 print(e.code);
                               showDialog(
