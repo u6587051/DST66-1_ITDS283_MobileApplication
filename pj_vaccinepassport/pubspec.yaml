@@ -35,8 +35,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  go_router: ^13.2.2
-  carousel_slider: ^4.2.1
+  carousel_slider: ^4.2.1 # 
   google_maps_flutter: ^2.5.3
   location: ^6.0.1
   firebase_core: ^2.29.0
