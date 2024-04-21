@@ -20,4 +20,4 @@ Student ID: 6587051
   4.3 ใน Folder:feature_page จะประกอบไปด้วย Folder คือ antibody, calendar, map และ vaccine_history โดยข้างในจะประกอบไปด้วย antibody.dart, calendar.dart, healthlocation.dart และ vaccine_history.dart
   4.4 ในไฟล์ antibody.dart เป็นโค๊ดสำหรับใช้รันหน้า Antibody ที่จะแสดงประวัติการตรวจ Antibody ในร่างกาย, calendar.dart เป็นโค๊ดสำหรับใช้รันหน้า Calendar โดยจะแสดงนัดหมายครั้งถัดไป, healthlocation.dart เป็นโค๊ดสำหรับใช้รันหน้า Health Location โดยจะแสดงตำแหน่งปัจจุบันของเราและสถานพยาบาลที่เข้าร่วมที่ใกล้ที่สุด และ vaccine_history.dart เป็นโค๊ดสำหรับใช้รันหน้า vaccine_history โดยจะแสดงประวัติการฉีดวัคซีนของผู้ใช้ 
   4.5 ใน Folder: Model จะทำการเก็บ event.dart เป็น Class สำหรับเก็บข้อมูลหน้า calendar.dart และ profile.dart เป็น Class สำหรับเก็บข้อมูลผู้ใช้
-5. สามารถรันแอพพลิเคชันได้
+5. สามารถรันแอพพลิเคชันได้ผ่าน main.dart
