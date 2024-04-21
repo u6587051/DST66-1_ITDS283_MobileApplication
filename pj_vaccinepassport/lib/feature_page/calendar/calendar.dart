@@ -212,8 +212,7 @@ class _Calendar extends State<Calendar> {
                     _getEventForDay(_selectedDay!).isNotEmpty) {
                   event = _getEventForDay(_selectedDay!)[index];
                   _eventsList.forEach((date, events) {
-                    if (events.contains(event)) {
-                    }
+                    if (events.contains(event)) {}
                   });
                 } else {
                   event = _eventsList.values
