@@ -17,3 +17,4 @@ Student ID: 6587051
 4. ใน Folder:common_pages จะประกอบไปด้วย home-page.dart เป็นโค๊ดสำหรับใช้รันหน้า Homepage, login-page.dart  เป็นโค๊ดสำหรับใช้รันหน้า Login page และ qr-page.dart เป็นโค๊ดสำหรับใช้รันหน้า QR Page ที่จำแสดงข้อมูลที่เราสมัครผ่านการลงทะเบียน ใน Create-account page 1 และ Create-account page 2
 5. ใน Folder:create_account จะประกอบด้วย create-account_1.dart และ create-account_2.dart โดยในแต่ละหน้าจะให้ผู้ใช้ทำการลงทะเบียน
 6. ใน Folder:feature_page จะประกอบไปด้วย Folder คือ antibody, calendar, map และ vaccine_history โดยข้างในจะประกอบไปด้วย antibody.dart, calendar.dart, healthlocation.dart และ vaccine_history.dart
+7. ในไฟล์ antibody.dart เป็นโค๊ดสำหรับใช้รันหน้า Antibody ที่จะแสดงประวัติการตรวจ Antibody ในร่างกาย, calendar.dart เป็นโค๊ดสำหรับใช้รันหน้า Calendar โดยจะแสดงนัดหมายการ
